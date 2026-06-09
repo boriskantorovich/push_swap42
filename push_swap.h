@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 12:57:03 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/09 14:09:13 by bkantoro         ###   ########.fr       */
+/*   Updated: 2026/06/09 17:39:39 by bkantoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 # include <stddef.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 /// TEST INCLUDES
 
 # include "stdio.h"
 # include "limits.h"
+# include "string.h"
+# include "assert.h"
 
 typedef	struct	s_stack
 {
