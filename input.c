@@ -12,13 +12,18 @@
 
 #include "push_swap.h"
 
+int	ft_isdigit(int c)
+{
+	return ((c >= '0' && c <= '9'));
+}
+
 int	ft_digit_advanced(const char *nptr)
 {
-	if (*nptr == '-' && *(nptr + 1) >= '0' && *(nptr + 1) <= '9')
+	if (*nptr == '-' && ft_isdigit((int)(*nptr)))
 		nptr++;
 	while (*nptr)
 	{
-		if (*nptr >= '0' && *nptr <= '9')
+		if (ft_isdigit((int)(*nptr)))
 			nptr++;
 		else
 			return (0);
@@ -38,7 +43,7 @@ int	ft_atol_helper(const char *nptr)
 		nptr++;
 		sgn = 1;
 	}
-	while (*nptr >= '0' && *nptr <= '9')
+		while (ft_isdigit((int)(*nptr)))
 	{
 		nb = nb * 10 + (*nptr - '0');
 		if (!sgn && nb > INT_MAX)
@@ -62,7 +67,7 @@ long	ft_atol(const char *nptr)
 		sgn = -sgn;
 		nptr++;
 	}
-	while (*nptr >= '0' && *nptr <= '9')
+	while (ft_isdigit((int)(*nptr)))
 	{
 		nb = nb * 10 + (*nptr - '0');
 		nptr++;
@@ -76,18 +81,42 @@ int	print_error(void)
 	return (-1);
 }
 
-int	flag_extractor(char *arg)
+int cmpflag(char *arg)
 {
-	if (!strcmp(arg, "--simple"))
-		return (1);
-	if (!strcmp(arg, "--medium"))
-		return (2);
-	if (!strcmp(arg, "--complex"))
-		return (3);
-	if (!strcmp(arg, "--adaptive"))
-		return (4);
-	if (!strcmp(arg, "--bench"))
-		return (5);
+	int i = 1;
+	int j = 2;
+	int h = 0;
+	char *flags[]= {"gg", "simple", "medium", "complex", "adaptive", "bench"};
+	while (flags[i])
+	{
+		while (arg[j] == flags[i][h])
+		{
+			if (arg[j] == '\0')
+				return (i);
+			h++;
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	flag_extractor(char **argv, int argc)
+{
+	int i = 1;
+	int j = 0;
+	while (argc - (argc -2) < 3)
+	{
+		if ((!argv[i][j] == '-' && argv[i][j +1] == '-'))
+			return (0);
+		else
+		{
+			int res = cmpflag(argv[i]);
+			if (res)
+				return (res);
+		}
+		i++;
+	}
 	return (0);
 }
 
@@ -147,12 +176,13 @@ int	main(int argc, char **argv)
 		return (print_error());
 	if (argc >= 2) 
 	{
-		i = 1;
-		while (i < argc && flag_extractor(argv[i])) // save somehow
-		{
-			flag += flag_extractor(argv[i]);
-			i++;
-		}
+		i = argc;
+		/* while (i < argc && flag_extractor(argv[i])) // save somehow */
+		/* { */
+		/* 	flag += flag_extractor(argv[i]); */
+		/* 	i++; */
+		/* } */
+		flag_extractor(argv, argc);
 		size = argc - i;
 		input = (int *)malloc(sizeof(int) * size);
 		if (!input)
