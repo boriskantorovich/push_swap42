@@ -93,6 +93,8 @@ int	flag_extractor(char *arg)
 
 void	push_swap(int *input, int flag)
 {
+	// ranking 
+	// input [12, 10, 13, 128] -> copy -> qsort -> [1, 0, 2, 3]
 	((void)input);
 	((void)flag);
 }
