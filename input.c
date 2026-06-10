@@ -81,37 +81,37 @@ int	print_error(void)
 	return (-1);
 }
 
-int cmpstr(char *value)
-{                                                                                                        
-   	int i;
-    const char *values[] = {" ", " ", "--simple", "--bench", "--medium", " ", "--complex", " ", "--adaptive"}; 
-
-	i = 2;    /*           0    1        2          3          4        5        6        7          8 */
-   	while (i < 9) 
-    {                                                                                                    
-        if (!strcmp(value, values[i]))                                                                   
-            return (i);                                                                                  
-        i++;
-    }       
+int	cmpstr(char *value)
+{
+	int i;
+    const char *values[] = {" ", " ", "--simple", "--bench", "--medium", " ", "--complex", " ", "--adaptive"};
+	
+	i = 2;
+	while (i < 9)
+    {
+        if (!strcmp(value, values[i]))
+            return (i);
+		i++;
+    }
     return (-1);
-}   
-    
-int flags(char *arg)
-{                                                                                                        
-    int res;
+}
+
+int	flags(char *arg)
+{
+	int res;
 	int tmp;
-    
+
 	res = 0;
 	tmp = cmpstr(arg);
 	if (tmp == -1 || tmp == res || (tmp != -1 && res != 0 &&(res + tmp) % 2 == 0))
-		return (-1); 
+		return (-1);
 	res = tmp + res;
     return (res);
 }
 
 void	push_swap(int *input , int flag)
 {
-	// ranking 
+	// ranking
 	// input [12, 10, 13, 128] -> copy -> qsort -> [1, 0, 2, 3]
 	((void)input);
 	((void)flag);
