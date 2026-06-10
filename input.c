@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 14:33:16 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/10 18:11:36 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/10 20:00:57 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,34 +84,28 @@ int	print_error(void)
 int cmpstr(char *value)
 {                                                                                                        
    	int i;
-    char *values[]; 
-	
-	i = 2;
-	values[] = {" ", " ", "--simple", "--bench", "--medium", " ", "--complex", " ", "--adaptive"}; 
-    /*           0    1        2          3          4        5        6        7          8 */
-    while (i < 9)
+    const char *values[] = {" ", " ", "--simple", "--bench", "--medium", " ", "--complex", " ", "--adaptive"}; 
+
+	i = 2;    /*           0    1        2          3          4        5        6        7          8 */
+   	while (i < 9) 
     {                                                                                                    
         if (!strcmp(value, values[i]))                                                                   
             return (i);                                                                                  
         i++;
     }       
-    return (-1);                                                                                         
+    return (-1);
 }   
     
 int flags(char *arg)
 {                                                                                                        
-    int i;
     int res;
 	int tmp;
     
-	i = 1;
 	res = 0;
 	tmp = cmpstr(arg);
-	if (tmp == -1 || tmp == res || (i == 2 && tmp != -1 && (res + tmp) % 2 == 0))
+	if (tmp == -1 || tmp == res || (tmp != -1 && res != 0 &&(res + tmp) % 2 == 0))
 		return (-1); 
 	res = tmp + res;
-	else
-		return (-1);
     return (res);
 }
 
@@ -162,7 +156,7 @@ int	main(int argc, char **argv)
 {
 	int 	flag;
 	/* int	*input; */
-	int 	i;
+	/* int 	i; */
 	/* int	j; */
 	/* int 	size; */
 
@@ -170,9 +164,10 @@ int	main(int argc, char **argv)
 		return (print_error());
 	if (argc > 1) 
 	{
-		i = 1;
-		while (argv[i] && i < 3)
-			flag = flags(argv,argc);
+		/* i = 1; */
+		/* while (argv[i] && i < 3) */
+			flag = flags(argv[1]);
+			/* flag = flags(argv[2]); */
 		if (flag == -1)
 			printf("ERRROR");
 		printf("%d", flag);
