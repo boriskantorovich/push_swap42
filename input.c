@@ -81,34 +81,6 @@ int	print_error(void)
 	return (-1);
 }
 
-int	cmpstr(char *value)
-{
-	int i;
-    const char *values[] = {" ", " ", "--simple", "--bench", "--medium", " ", "--complex", " ", "--adaptive"};
-	
-	i = 2;
-	while (i < 9)
-    {
-        if (!strcmp(value, values[i]))
-            return (i);
-		i++;
-    }
-    return (-1);
-}
-
-int	flags(char *arg)
-{
-	int res;
-	int tmp;
-
-	res = 0;
-	tmp = cmpstr(arg);
-	if (tmp == -1 || tmp == res || (tmp != -1 && res != 0 &&(res + tmp) % 2 == 0))
-		return (-1);
-	res = tmp + res;
-    return (res);
-}
-
 void	push_swap(int *input , int flag)
 {
 	// ranking
@@ -152,11 +124,44 @@ int	is_sorted(int *input, int n)
 	return (1);
 }
 
+int	cmpstr(char *value)
+{
+	int i;
+    const char *values[] = {" ", " ", "--simple", "--bench", "--medium", " ", "--complex", " ", "--adaptive"};
+	
+	i = 2;
+	if (!value)
+		return (0);
+	while (i < 9)
+    {
+        if (!strcmp(value, values[i]))
+            return (i);
+		i++;
+    }
+    return (0);
+}	
+
+int	flags(char **argv)
+{
+	int res;
+	int tmp;
+
+	res = 0;
+	tmp = cmpstr(argv[1]);
+	if (tmp == 0 || tmp == res || (tmp != 0 && res != 0 && ((res + tmp) % 2 == 0)))
+		return (0);
+	res = tmp + res;
+	if (cmpstr(argv[2]))
+		res += cmpstr(argv[2]);
+    return (res);
+}
+
 int	main(int argc, char **argv)
 {
 	int 	flag;
+	int  	second;
 	/* int	*input; */
-	/* int 	i; */
+	int 	i;
 	/* int	j; */
 	/* int 	size; */
 
@@ -164,9 +169,9 @@ int	main(int argc, char **argv)
 		return (print_error());
 	if (argc > 1) 
 	{
-		/* i = 1; */
+		i = 1;
 		/* while (argv[i] && i < 3) */
-			flag = flags(argv[1]);
+		flag = flags(argv);
 			/* flag = flags(argv[2]); */
 		if (flag == -1)
 			printf("ERRROR");
