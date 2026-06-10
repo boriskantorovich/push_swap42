@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 14:33:16 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/09 19:40:53 by bkantoro         ###   ########.fr       */
+/*   Updated: 2026/06/10 18:11:36 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,46 +81,41 @@ int	print_error(void)
 	return (-1);
 }
 
-int cmpflag(char *arg)
-{
-	int i = 1;
-	int j = 2;
-	int h = 0;
-	char *flags[]= {"gg", "simple", "medium", "complex", "adaptive", "bench"};
-	while (flags[i])
-	{
-		while (arg[j] == flags[i][h])
-		{
-			if (arg[j] == '\0')
-				return (i);
-			h++;
-			j++;
-		}
-		i++;
-	}
-	return (0);
+int cmpstr(char *value)
+{                                                                                                        
+   	int i;
+    char *values[]; 
+	
+	i = 2;
+	values[] = {" ", " ", "--simple", "--bench", "--medium", " ", "--complex", " ", "--adaptive"}; 
+    /*           0    1        2          3          4        5        6        7          8 */
+    while (i < 9)
+    {                                                                                                    
+        if (!strcmp(value, values[i]))                                                                   
+            return (i);                                                                                  
+        i++;
+    }       
+    return (-1);                                                                                         
+}   
+    
+int flags(char *arg)
+{                                                                                                        
+    int i;
+    int res;
+	int tmp;
+    
+	i = 1;
+	res = 0;
+	tmp = cmpstr(arg);
+	if (tmp == -1 || tmp == res || (i == 2 && tmp != -1 && (res + tmp) % 2 == 0))
+		return (-1); 
+	res = tmp + res;
+	else
+		return (-1);
+    return (res);
 }
 
-int	flag_extractor(char **argv, int argc)
-{
-	int i = 1;
-	int j = 0;
-	while (argc - (argc -2) < 3)
-	{
-		if ((!argv[i][j] == '-' && argv[i][j +1] == '-'))
-			return (0);
-		else
-		{
-			int res = cmpflag(argv[i]);
-			if (res)
-				return (res);
-		}
-		i++;
-	}
-	return (0);
-}
-
-void	push_swap(int *input, int flag)
+void	push_swap(int *input , int flag)
 {
 	// ranking 
 	// input [12, 10, 13, 128] -> copy -> qsort -> [1, 0, 2, 3]
@@ -151,7 +146,6 @@ int	found_repeats(int *input, int n)
 int	is_sorted(int *input, int n)
 {
 	int i;
-	int j;
 
 	i = 0;
 	while (i < n - 1)
@@ -167,52 +161,50 @@ int	is_sorted(int *input, int n)
 int	main(int argc, char **argv)
 {
 	int 	flag;
-	int	*input;
+	/* int	*input; */
 	int 	i;
-	int	j;
-	int 	size;
+	/* int	j; */
+	/* int 	size; */
 
 	if (argc == 1)
 		return (print_error());
-	if (argc >= 2) 
+	if (argc > 1) 
 	{
-		i = argc;
-		/* while (i < argc && flag_extractor(argv[i])) // save somehow */
+		i = 1;
+		while (argv[i] && i < 3)
+			flag = flags(argv,argc);
+		if (flag == -1)
+			printf("ERRROR");
+		printf("%d", flag);
+		/* input = (int *)malloc(sizeof(int) * size); */
+		/* if (!input) */
+		/* 	return (print_error()); */
+		/* j = 0; */
+		/* while (i < argc) */
 		/* { */
-		/* 	flag += flag_extractor(argv[i]); */
+		/* 	if (!ft_digit_advanced(argv[i])) */
+		/* 	{ */
+		/* 		free(input); */
+		/* 		return (print_error()); */
+		/* 	} */
+		/* 	if (!ft_atol_helper(argv[i])) */
+		/* 	{ */
+		/* 		free(input); */
+		/* 				return (print_error()); */
+		/* 	} */
+		/* 	input[j] = ft_atol(argv[i]); */
+		/* 	j++; */
 		/* 	i++; */
 		/* } */
-		flag_extractor(argv, argc);
-		size = argc - i;
-		input = (int *)malloc(sizeof(int) * size);
-		if (!input)
-			return (print_error());
-		j = 0;
-		while (i < argc)
-		{
-			if (!ft_digit_advanced(argv[i]))
-			{
-				free(input);
-				return (print_error());
-			}
-			if (!ft_atol_helper(argv[i]))
-			{
-				free(input);
-				return (print_error());
-			}
-			input[j] = ft_atol(argv[i]);
-			j++;
-			i++;
-		}
-		if (!found_repeats(input, size))
-		{
-			if (!is_sorted(input, size))
-				push_swap(input, flag);
-			else
-				return (0);
-		}
-		else
-			return (print_error());
+		/* if (!found_repeats(input, size)) */
+		/* { */
+		/* 	if (!is_sorted(input, size)) */
+		/* 		push_swap(input, flag); */
+		/* 	else */
+		/* 		return (0); */
+		/* } */
+		/* else */
+		/* 	return (print_error()); */
 	}
 	return (0);
 }
