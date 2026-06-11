@@ -15,7 +15,7 @@
 t_stack	*init_stack(int n)
 {
 	t_stack	*new;
-	
+
 	new = malloc(sizeof(t_stack));
 	if (!new)
 		return (NULL);
@@ -27,12 +27,12 @@ t_stack	*init_stack(int n)
 
 int	fill_stack(t_stack *stack, int *input, int n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (!stack || !input || !n)
 		return (0);
-	stack->numbers = malloc(sizeof(int)*n);
+	stack->numbers = malloc(sizeof(int) * n);
 	if (!stack->numbers)
 		return (0);
 	while (i < n)
@@ -48,4 +48,4 @@ void	clear_stack(t_stack *stack)
 {
 	free(stack->numbers);
 	free(stack);
-}	
+}

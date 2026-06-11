@@ -29,7 +29,7 @@ int	ft_digit_advanced(const char *nptr)
 int	ft_atol_helper(const char *nptr)
 {
 	unsigned long long	nb;
-	int			sgn;
+	int					sgn;
 
 	nb = 0;
 	sgn = 0;
@@ -53,7 +53,7 @@ int	ft_atol_helper(const char *nptr)
 long	ft_atol(const char *nptr)
 {
 	unsigned long long	nb;
-	int			sgn;
+	int					sgn;
 
 	nb = 0;
 	sgn = 1;
@@ -93,7 +93,7 @@ int	flag_extractor(char *arg)
 
 void	push_swap(int *input, int flag)
 {
-	// ranking 
+	// ranking
 	// input [12, 10, 13, 128] -> copy -> qsort -> [1, 0, 2, 3]
 	((void)input);
 	((void)flag);
@@ -114,15 +114,15 @@ int	found_repeats(int *input, int n)
 				return (1);
 			j++;
 		}
-		i++;	
+		i++;
 	}
 	return (0);
 }
 
 int	is_sorted(int *input, int n)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < n - 1)
@@ -137,15 +137,15 @@ int	is_sorted(int *input, int n)
 
 int	main(int argc, char **argv)
 {
-	int 	flag;
+	int	flag;
 	int	*input;
-	int 	i;
+	int	i;
 	int	j;
-	int 	size;
+	int	size;
 
 	if (argc == 1)
 		return (print_error());
-	if (argc >= 2) 
+	if (argc >= 2)
 	{
 		i = 1;
 		while (i < argc && flag_extractor(argv[i])) // save somehow

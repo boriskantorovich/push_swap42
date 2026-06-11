@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_stack_api.c                                   :+:      :+:    :+:   */
+/*   stack_api_swap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/09 13:34:00 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/09 14:27:46 by bkantoro         ###   ########.fr       */
+/*   Created: 2026/06/09 13:17:21 by bkantoro          #+#    #+#             */
+/*   Updated: 2026/06/11 16:06:44 by bkantoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	test_print(t_stack *test, int n)
+void	swap_first_pair(t_stack *st)
 {
-	for (int i = 0; i < n; i++)
-	{
-		printf("%d\n", test->numbers[i]);
-	}
+	if (!st || st->size <= 1)
+		return ;
+	ft_swap(&st->numbers[0], &st->numbers[1]);
 }
 
-int	main(void)
+void	sa(t_stack *a)
 {
-	t_stack	*test;
-	int		n;
-	int		test_nb[] = {100, 213, 12, INT_MAX, INT_MIN};
-
-	n = 5;
-	test = init_stack(n);
-	fill_stack(test, test_nb, n);
-	test_print(test, n);
-	sa(test);
-	test_print(test, n);
-	sb(test);
-	test_print(test, n);
-	clear_stack(test);
+	swap_first_pair(a);
 }
+
+void	sb(t_stack *b)
+{
+	swap_first_pair(b);
+}
+
