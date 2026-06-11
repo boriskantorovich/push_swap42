@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 14:33:16 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/10 20:00:57 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/11 12:16:30 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,20 +148,26 @@ int	flags(char **argv)
 
 	res = 0;
 	tmp = cmpstr(argv[1]);
-	if (tmp == 0 || tmp == res || (tmp != 0 && res != 0 && ((res + tmp) % 2 == 0)))
+	if (tmp == 0)
 		return (0);
 	res = tmp + res;
-	if (cmpstr(argv[2]))
-		res += cmpstr(argv[2]);
+	if (argv[2])
+	{
+		if (argv[2][0] == '-' && argv[2][1] == '-')
+		{
+			tmp = cmpstr(argv[2]);
+			if (tmp == 0 || tmp == res || (tmp != 0 && res != 0 && ((res + tmp) % 2 == 0)))
+				return (0);
+			res += tmp;
+		}
+	}
     return (res);
 }
 
 int	main(int argc, char **argv)
 {
 	int 	flag;
-	int  	second;
 	/* int	*input; */
-	int 	i;
 	/* int	j; */
 	/* int 	size; */
 
@@ -169,7 +175,6 @@ int	main(int argc, char **argv)
 		return (print_error());
 	if (argc > 1) 
 	{
-		i = 1;
 		/* while (argv[i] && i < 3) */
 		flag = flags(argv);
 			/* flag = flags(argv[2]); */
