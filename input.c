@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 14:33:16 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/11 12:16:30 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/11 14:54:56 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_isdigit(int c)
 {
 	return ((c >= '0' && c <= '9'));
 }
-
 int	ft_digit_advanced(const char *nptr)
 {
 	if (*nptr == '-' && ft_isdigit((int)(*nptr)))
@@ -128,7 +127,7 @@ int	cmpstr(char *value)
 {
 	int i;
     const char *values[] = {" ", " ", "--simple", "--bench", "--medium", " ", "--complex", " ", "--adaptive"};
-	
+	/*						 0	  1	       2 	      3		      4 	  5 	  	6	    7 		   8 */	
 	i = 2;
 	if (!value)
 		return (0);
@@ -164,23 +163,74 @@ int	flags(char **argv)
     return (res);
 }
 
+int helper(int flag)
+{
+	int i;
+			
+	if (flag == 0)
+		printf("zero flag: %d", flag);
+	else if (flag == 3 || ((flag) % 2 == 0  && (i = 1))) 
+		printf("non bench flag: %d, arguments passed: %d", flag, i);
+	else if (((flag) % 2 == 1) && (i = 2))
+		printf("bench flag: %d, arguments passed: %d", flag, i);
+	return (i);
+}
+
+int	ft_isdigit_char(char c)
+{
+	return ((c >= '0' && c <= '9'));
+}
+int validator(char *arg)
+{
+	int i;
+	int limit;
+	int	len;
+
+	i = 0;
+	limit = 9;
+	len = strlen(arg); 
+	if (arg[i] == '-' && i++)
+		limit += 2;
+	if (len > limit)
+		return (0);			
+	while (i < len)
+	{
+		if(!ft_isdigit_char(arg[i]))
+			return (0);
+		i++;
+	}
+	return(1);
+}
+
 int	main(int argc, char **argv)
 {
 	int 	flag;
-	/* int	*input; */
-	/* int	j; */
-	/* int 	size; */
+	int		offset;
+	int		i;
+	/* int		res; */
 
 	if (argc == 1)
 		return (print_error());
 	if (argc > 1) 
 	{
-		/* while (argv[i] && i < 3) */
 		flag = flags(argv);
+		offset = helper(flag);
+		printf("\noffset: %d\n", offset);
+		i = argc - (argc - offset) + 1;	
+		while(i < argc) 
+		{
+			printf("is valid:%d\n", validator(argv[i]));
+			i++;
+		}
+
+/* int	*input; */
+	/* int	j; */
+	/* int 	size; */
+
+
 			/* flag = flags(argv[2]); */
-		if (flag == -1)
-			printf("ERRROR");
-		printf("%d", flag);
+		/* if (flag == 0) */
+			/* printf("ERRROR"); */
 		/* input = (int *)malloc(sizeof(int) * size); */
 		/* if (!input) */
 		/* 	return (print_error()); */
