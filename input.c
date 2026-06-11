@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 14:33:16 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/11 15:04:37 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/11 20:07:31 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,12 @@ long	ft_atol(const char *nptr)
 	return (sgn * nb);
 }
 
-int	print_error(void)
+int	print_error(char *err)
 {
-	write(1, "Error\n", 6);
+	if (!err)
+		printf("Error\n");
+	else
+		printf ("%s\n", err);
 	return (-1);
 }
 
@@ -165,15 +168,14 @@ int	flags(char **argv)
 
 int helper(int flag)
 {
-	int i;
-			
-	if (flag == 0)
-		printf("zero flag: %d", flag);
-	else if (flag == 3 || ((flag) % 2 == 0  && (i = 1))) 
-		printf("non bench flag: %d, arguments passed: %d", flag, i);
-	else if (((flag) % 2 == 1) && (i = 2))
-		printf("bench flag: %d, arguments passed: %d", flag, i);
-	return (i);
+	if (flag != 0)
+	{
+		if (flag == 3 || (flag % 2 == 0)) 
+			return (1);
+		else if (flag % 2 == 1)
+			return (2);
+	}
+	return (0);
 }
 
 int	ft_isdigit_char(char c)
@@ -210,43 +212,54 @@ int	main(int argc, char **argv)
 	int		i;
 	int		*input;
 	int		j;
-	int 	size;
 
 	if (argc == 1)
-		return (print_error());
+		return (print_error("not enough args"));
 	if (argc > 1) 
 	{
 		flag = flags(argv);
+		printf("flag: %d\n", flag);
 		offset = helper(flag);
-		size = argc - offset;
-		printf("\noffset: %d\n", offset);
+		printf("offset: %d\n", offset);
+		
+		size = argc - offset - 1;
+		input = (int *)malloc(sizeof(int) * size);
 		i = 1 + (argc - size);	
+
+		if (size > 1)
+		{
+			while (i < argc)
+			{
+			if (!found_repeats(input, size))
+			{
+				if (!is_sorted(input, size))
+					print_error("no repeats, not sorted");
+				else
+					print_error("sorted");
+			}
+			else
+				print_error("repeats found");
+			i++;
+			}
+
+		}
+
 		while (i < argc)
 		{
 			if (!ft_digit_advanced(argv[i]))
 			{
 				free(input);
-				return (print_error());
+				return (print_error("not digit found"));
 			}
 			if (!ft_atol_helper(argv[i]))
 			{
 				free(input);
-						return (print_error());
+						return (print_error("something wrong"));
 			}
 			input[j] = ft_atol(argv[i]);
 			j++;
-			i++;
 		}	
-		if (!found_repeats(input, size))
-		{
-			if (!is_sorted(input, size))
-				push_swap(input, flag);
-			else
-				return (0);
-		}
-		else
-			return (print_error());
-
+		
 
 			/* flag = flags(argv[2]); */
 		/* if (flag == 0) */
