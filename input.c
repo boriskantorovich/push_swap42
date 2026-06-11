@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 14:33:16 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/11 14:54:56 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/11 15:04:37 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,8 +206,11 @@ int	main(int argc, char **argv)
 {
 	int 	flag;
 	int		offset;
+	int		size;
 	int		i;
-	/* int		res; */
+	int		*input;
+	int		j;
+	int 	size;
 
 	if (argc == 1)
 		return (print_error());
@@ -215,17 +218,34 @@ int	main(int argc, char **argv)
 	{
 		flag = flags(argv);
 		offset = helper(flag);
+		size = argc - offset;
 		printf("\noffset: %d\n", offset);
-		i = argc - (argc - offset) + 1;	
-		while(i < argc) 
+		i = 1 + (argc - size);	
+		while (i < argc)
 		{
-			printf("is valid:%d\n", validator(argv[i]));
+			if (!ft_digit_advanced(argv[i]))
+			{
+				free(input);
+				return (print_error());
+			}
+			if (!ft_atol_helper(argv[i]))
+			{
+				free(input);
+						return (print_error());
+			}
+			input[j] = ft_atol(argv[i]);
+			j++;
 			i++;
+		}	
+		if (!found_repeats(input, size))
+		{
+			if (!is_sorted(input, size))
+				push_swap(input, flag);
+			else
+				return (0);
 		}
-
-/* int	*input; */
-	/* int	j; */
-	/* int 	size; */
+		else
+			return (print_error());
 
 
 			/* flag = flags(argv[2]); */

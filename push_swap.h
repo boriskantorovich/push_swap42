@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 12:57:03 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/09 17:39:39 by bkantoro         ###   ########.fr       */
+/*   Updated: 2026/06/10 12:11:38 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	pa(t_stack *stack, int input);
 t_stack	*init_stack(int n);
 int	fill_stack(t_stack *stack, int *input, int n);
 void	clear_stack(t_stack *stack);
+char    *ft_substr(char const *s, unsigned int start, size_t len);
+size_t  ft_strlen(const char *s);
 
 #endif
