@@ -1,63 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_api_push.c                                   :+:      :+:    :+:   */
+/*   stack_api.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 13:17:21 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/11 16:05:28 by bkantoro         ###   ########.fr       */
+/*   Updated: 2026/06/11 15:02:09 by bkantoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	grow_down(t_stack *st, int new)
+void	revrotate(t_stack *st)
 {
+	int	tmp;
 	int	i;
 
-	if (!st || st->size == st->n)
+	if (!st || st->size <= 1)
 		return ;
-	st->size++;
+	tmp = st->numbers[st->size - 1];
 	i = st->size - 1;
 	while (i > 0)
 	{
 		st->numbers[i] = st->numbers[i - 1];
 		i--;
 	}
-	st->numbers[0] = new;
+	st->numbers[0] = tmp;
 }
 
-void	shrink_up(t_stack *stack)
+void	rra(t_stack *a)
 {
-	int	i;
-
-	if (!stack || stack->size == 0)
+	if (!a)
 		return ;
-	i = 0;
-	while (i < (stack->size - 1))
-	{
-		stack->numbers[i] = stack->numbers[i + 1];
-		i++;
-	}
-	stack->size--;
+	revrotate(a);
 }
 
-void	push(t_stack *dst, t_stack *src)
+void	rrb(t_stack *b)
 {
-	if (!dst || !src || dst->size == dst->n || src->size == 0)
+	if (!b)
 		return ;
-	grow_down(dst, src->numbers[0]);
-	shrink_up(src);
+	rotate (b);
 }
 
-void	pa(t_stack *a, t_stack *b)
+void	rrr(t_stack *a, t_stack *b)
 {
-	push(a, b);
+	if (!a || !b)
+		return ;
+	rra(a);
+	rrb(b);
 }
-
-void	pb(t_stack *a, t_stack *b)
-{
-	push(b, a);
-}
-

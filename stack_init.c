@@ -27,7 +27,7 @@ t_stack	*init_stack(int n)
 
 int	fill_stack(t_stack *stack, int *input, int n)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!stack || !input || !n)

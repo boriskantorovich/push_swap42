@@ -12,70 +12,41 @@
 
 #include "push_swap.h"
 
-void	sa(t_stack *stack)
+void	rotate(t_stack *st)
 {
-	if (stack->size > 1)
-		ft_swap(&stack->numbers[0], &stack->numbers[1]);
-}
+	int	tmp;
+	int	i;
 
-void	sb(t_stack *stack)
-{
-	if (stack->size > 1)
-		ft_swap(&stack->numbers[0], &stack->numbers[1]);
-}
-
-void	grow_down(t_stack *stack, int new)
-{
-	int i;
-
-	if (!stack || stack->size == stack->n)
+	if (!st || st->size <= 1)
 		return ;
 	i = 0;
-	stack->size++;
-	while (i < (stack->size - 1))
+	tmp = st->numbers[i];
+	while (i < (st->size - 1))
 	{
-		stack->numbers[i + 1] = stack->numbers[i];
+		st->numbers[i] = st->numbers[i + 1];
 		i++;
 	}
-	stack->numbers[0] = new;
+	st->numbers[i] = tmp;
 }
 
-void	shrink_up(t_stack *stack)
+void	ra(t_stack *a)
 {
-	int i;
-
-	i = 0;
-	if (!stack || stack->size == 0)
+	if (!a)
 		return ;
-	stack->size--;
-	while (i < (stack->size - 1))
-	{
-		stack->numbers[i] = stack->numbers[i + 1];
-		i++;
-	}
+	rotate(a);
 }
 
-void	pa(t_stack *a, t_stack *b)
+void	rb(t_stack *b)
 {
-	if (!a || !b || a->size == a->n)
+	if (!b)
 		return ;
-	grow_down(&a, b->numbers[0]);
-	shrink_up(&b);
+	rotate (b);
 }
 
-void	pb(t_stack *b, t_stack *a)
+void	rr(t_stack *a, t_stack *b)
 {
-	if (!a || !b || a->size == a->n)
+	if (!a || !b)
 		return ;
-	grow_down(&b, a->numbers[0]);
-	shrink_up(&a);
+	ra(a);
+	rb(b);
 }
-
-void	ra(t_stack *a, t_stack *b)
-{
-	if (!a || !b || a->size == a->n)
-		return ;
-	grow_down(&a, b->numbers[0]);
-	shrink_up(&b);
-}
-
