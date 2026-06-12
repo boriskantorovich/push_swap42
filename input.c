@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/09 14:33:16 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/12 16:45:30 by milnicki         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 int	ft_isdigit(int c)
@@ -17,10 +5,10 @@ int	ft_isdigit(int c)
 	return ((c >= '0' && c <= '9'));
 }
 
-void print_error(void)
+int	print_error(char *err)
 {
-	printf("Error\n");
-	return (-1);
+	printf("Error: %s\n", err);
+	return (1);
 }
 
 int	found_repeats(int *input, int n)
@@ -35,7 +23,7 @@ int	found_repeats(int *input, int n)
 		j = i + 1;
 		while (j <= n)
 		{
-			/* printf("i: %d, j: %d\n", input[i], input[j]); */
+			printf("i: %d, j: %d\n", input[i], input[j]);
 			if (input[i] == input[j])
 				return (1);
 			j++;
@@ -47,7 +35,7 @@ int	found_repeats(int *input, int n)
 
 int	is_sorted(int *input, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size - 1)
@@ -61,25 +49,26 @@ int	is_sorted(int *input, int size)
 
 int	cmpstr(char *value)
 {
-	int i;
-    const char *values[] = {" ", " ", "--simple", "--bench", "--medium", " ", "--complex", " ", "--adaptive"};
-	/*						 0	  1	       2 	      3		      4 	  5 	  	6	    7 		   8 */	
+	int			i;
+	const char	*values[] = {" ", " ", "--simple", "--bench",
+		"--medium", " ", "--complex", " ", "--adaptive"};
+
 	i = 2;
 	if (!value)
 		return (0);
 	while (i < 9)
-    {
-        if (!strcmp(value, values[i]))
-            return (i);
+	{
+		if (!strcmp(value, values[i]))
+			return (i);
 		i++;
-    }
-    return (0);
-}	
+	}
+	return (0);
+}
 
 int	flags(char **argv)
 {
-	int res;
-	int tmp;
+	int	res;
+	int	tmp;
 
 	res = 0;
 	tmp = cmpstr(argv[1]);
@@ -91,15 +80,16 @@ int	flags(char **argv)
 		if (argv[2][0] == '-' && argv[2][1] == '-')
 		{
 			tmp = cmpstr(argv[2]);
-			if (tmp == 0 || tmp == res || (tmp != 0 && res != 0 && ((res + tmp) % 2 == 0)))
+			if (tmp == 0 || tmp == res || (tmp != 0 && res != 0 
+					&& ((res + tmp) % 2 == 0)))
 				return (0);
 			res += tmp;
 		}
 	}
-    return (res);
+	return (res);
 }
 
-int helper(int flag)
+int	helper(int flag)
 {
 	if (flag != 0)
 	{
@@ -111,10 +101,10 @@ int helper(int flag)
 	return (0);
 }
 
-int atol_helper(const char *nptr)
+int	atol_helper(const char *nptr)
 {
 	unsigned long long	nb;
-	int			sgn;
+	int					sgn;
 
 	nb = 0;
 	sgn = 1;
@@ -126,10 +116,10 @@ int atol_helper(const char *nptr)
 	while (ft_isdigit((int)(*nptr)))
 	{
 		nb = nb * 10 + (*nptr - '0');
-        if (sgn == 1 && nb > INT_MAX)
-            return (0);
+		if (sgn == 1 && nb > INT_MAX)
+			return (0);
 		else if (sgn == -1 && nb > (unsigned long long)INT_MAX + 1)
-            return (0);
+			return (0);
 		nptr++;
 	}
 	return (1);
@@ -157,27 +147,25 @@ int	ft_atol(const char *nptr)
 
 int	main(int argc, char **argv)
 {
-	int 	flag;
+	int		flag;
 	int		offset;
 	int		size;
 	int		i;
 	int		*input;
 	int		j;
+	int		g = 0;
 
 	if (argc == 1)
 		return (print_error("not enough args"));
-
 	flag = flags(argv);
 	offset = helper(flag);
 	size = argc - offset - 1;
 	printf("flag: %d\noffset: %d\n", flag, offset);
-
-	if (size > 1) 
+	if (size > 1)
 	{
 		input = (int *)malloc(sizeof(int) * size);
 		i = argc - size;
 		j = 0;
-
 		while (i < argc)
 		{
 			if (atol_helper(argv[i]))
@@ -194,18 +182,16 @@ int	main(int argc, char **argv)
 			printf("repeats");
 			return (0);
 		}
-		if (is_sorted(input,size))
+		if (is_sorted(input, size))
 		{
 			printf("sorted");
 			return (0); 
 		}
-		int g = 0;
-		while(g < size)
+		while (g < size)
 		{
 			printf("%d\n", input[g]);
 			g++;
 		}
-
 	}
 	return (0);
 }
