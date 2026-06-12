@@ -2,3 +2,5 @@
 *.o
 *.a
 *.gch
+tests/runtests
+push_swap
