@@ -22,17 +22,15 @@ void	test_print(t_stack *test, int n)
 
 int	main(void)
 {
-	t_stack	*test;
-	int		n;
-	int		test_nb[] = {100, 213, 12, INT_MAX, INT_MIN};
-
-	n = 5;
+	t_stack *test;
+	int n = 5;
+	int test_nb[] = {100, 213, 12, INT_MAX, INT_MIN};	
 	test = init_stack(n);
 	fill_stack(test, test_nb, n);
 	test_print(test, n);
-	sa(test);
+	sa(test);	
 	test_print(test, n);
-	sb(test);
+	sb(test);	
 	test_print(test, n);
 	clear_stack(test);
 }
