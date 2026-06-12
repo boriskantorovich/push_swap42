@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 14:33:16 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/11 20:07:31 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/12 16:45:30 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,79 +16,11 @@ int	ft_isdigit(int c)
 {
 	return ((c >= '0' && c <= '9'));
 }
-int	ft_digit_advanced(const char *nptr)
+
+void print_error(void)
 {
-	if (*nptr == '-' && ft_isdigit((int)(*nptr)))
-		nptr++;
-	while (*nptr)
-	{
-		if (ft_isdigit((int)(*nptr)))
-			nptr++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int	ft_atol_helper(const char *nptr)
-{
-	unsigned long long	nb;
-	int			sgn;
-
-	nb = 0;
-	sgn = 0;
-	if (*nptr == '-')
-	{
-		nptr++;
-		sgn = 1;
-	}
-		while (ft_isdigit((int)(*nptr)))
-	{
-		nb = nb * 10 + (*nptr - '0');
-		if (!sgn && nb > INT_MAX)
-			return (0);
-		if (sgn && nb > (unsigned long long)INT_MAX + 1)
-			return (0);
-		nptr++;
-	}
-	return (1);
-}
-
-long	ft_atol(const char *nptr)
-{
-	unsigned long long	nb;
-	int			sgn;
-
-	nb = 0;
-	sgn = 1;
-	if (*nptr == '-')
-	{
-		sgn = -sgn;
-		nptr++;
-	}
-	while (ft_isdigit((int)(*nptr)))
-	{
-		nb = nb * 10 + (*nptr - '0');
-		nptr++;
-	}
-	return (sgn * nb);
-}
-
-int	print_error(char *err)
-{
-	if (!err)
-		printf("Error\n");
-	else
-		printf ("%s\n", err);
+	printf("Error\n");
 	return (-1);
-}
-
-void	push_swap(int *input , int flag)
-{
-	// ranking
-	// input [12, 10, 13, 128] -> copy -> qsort -> [1, 0, 2, 3]
-	((void)input);
-	((void)flag);
 }
 
 int	found_repeats(int *input, int n)
@@ -97,32 +29,33 @@ int	found_repeats(int *input, int n)
 	int	j;
 
 	i = 0;
+	n -= 1;
 	while (i <= n)
 	{
 		j = i + 1;
 		while (j <= n)
 		{
+			/* printf("i: %d, j: %d\n", input[i], input[j]); */
 			if (input[i] == input[j])
 				return (1);
 			j++;
 		}
-		i++;	
+		i++;
 	}
 	return (0);
 }
 
-int	is_sorted(int *input, int n)
+int	is_sorted(int *input, int size)
 {
 	int i;
 
 	i = 0;
-	while (i < n - 1)
+	while (i < size - 1)
 	{
 		if (input[i] > input[i + 1])
 			return (0);
 		i++;
 	}
-	printf("sorted\n");
 	return (1);
 }
 
@@ -178,30 +111,48 @@ int helper(int flag)
 	return (0);
 }
 
-int	ft_isdigit_char(char c)
+int atol_helper(const char *nptr)
 {
-	return ((c >= '0' && c <= '9'));
-}
-int validator(char *arg)
-{
-	int i;
-	int limit;
-	int	len;
+	unsigned long long	nb;
+	int			sgn;
 
-	i = 0;
-	limit = 9;
-	len = strlen(arg); 
-	if (arg[i] == '-' && i++)
-		limit += 2;
-	if (len > limit)
-		return (0);			
-	while (i < len)
+	nb = 0;
+	sgn = 1;
+	if (*nptr == '-')
 	{
-		if(!ft_isdigit_char(arg[i]))
-			return (0);
-		i++;
+		sgn = -1;
+		nptr++;
 	}
-	return(1);
+	while (ft_isdigit((int)(*nptr)))
+	{
+		nb = nb * 10 + (*nptr - '0');
+        if (sgn == 1 && nb > INT_MAX)
+            return (0);
+		else if (sgn == -1 && nb > (unsigned long long)INT_MAX + 1)
+            return (0);
+		nptr++;
+	}
+	return (1);
+}
+
+int	ft_atol(const char *nptr)
+{
+	int			nb;
+	int			sgn;
+
+	nb = 0;
+	sgn = 1;
+	if (*nptr == '-')
+	{
+		sgn = -1;
+		nptr++;
+	}
+	while (ft_isdigit((int)(*nptr)))
+	{
+		nb = nb * 10 + (*nptr - '0');
+		nptr++;
+	}
+	return (sgn * nb);
 }
 
 int	main(int argc, char **argv)
@@ -215,84 +166,46 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (print_error("not enough args"));
-	if (argc > 1) 
+
+	flag = flags(argv);
+	offset = helper(flag);
+	size = argc - offset - 1;
+	printf("flag: %d\noffset: %d\n", flag, offset);
+
+	if (size > 1) 
 	{
-		flag = flags(argv);
-		printf("flag: %d\n", flag);
-		offset = helper(flag);
-		printf("offset: %d\n", offset);
-		
-		size = argc - offset - 1;
 		input = (int *)malloc(sizeof(int) * size);
-		i = 1 + (argc - size);	
-
-		if (size > 1)
-		{
-			while (i < argc)
-			{
-			if (!found_repeats(input, size))
-			{
-				if (!is_sorted(input, size))
-					print_error("no repeats, not sorted");
-				else
-					print_error("sorted");
-			}
-			else
-				print_error("repeats found");
-			i++;
-			}
-
-		}
+		i = argc - size;
+		j = 0;
 
 		while (i < argc)
 		{
-			if (!ft_digit_advanced(argv[i]))
+			if (atol_helper(argv[i]))
 			{
-				free(input);
-				return (print_error("not digit found"));
+				input[j] = ft_atol(argv[i]);
+				i++;
+				j++;
 			}
-			if (!ft_atol_helper(argv[i]))
-			{
-				free(input);
-						return (print_error("something wrong"));
-			}
-			input[j] = ft_atol(argv[i]);
-			j++;
-		}	
-		
+			else
+				return (print_error("wrong input"));
+		}
+		if (found_repeats(input, size))
+		{
+			printf("repeats");
+			return (0);
+		}
+		if (is_sorted(input,size))
+		{
+			printf("sorted");
+			return (0); 
+		}
+		int g = 0;
+		while(g < size)
+		{
+			printf("%d\n", input[g]);
+			g++;
+		}
 
-			/* flag = flags(argv[2]); */
-		/* if (flag == 0) */
-			/* printf("ERRROR"); */
-		/* input = (int *)malloc(sizeof(int) * size); */
-		/* if (!input) */
-		/* 	return (print_error()); */
-		/* j = 0; */
-		/* while (i < argc) */
-		/* { */
-		/* 	if (!ft_digit_advanced(argv[i])) */
-		/* 	{ */
-		/* 		free(input); */
-		/* 		return (print_error()); */
-		/* 	} */
-		/* 	if (!ft_atol_helper(argv[i])) */
-		/* 	{ */
-		/* 		free(input); */
-		/* 				return (print_error()); */
-		/* 	} */
-		/* 	input[j] = ft_atol(argv[i]); */
-		/* 	j++; */
-		/* 	i++; */
-		/* } */
-		/* if (!found_repeats(input, size)) */
-		/* { */
-		/* 	if (!is_sorted(input, size)) */
-		/* 		push_swap(input, flag); */
-		/* 	else */
-		/* 		return (0); */
-		/* } */
-		/* else */
-		/* 	return (print_error()); */
 	}
 	return (0);
 }
