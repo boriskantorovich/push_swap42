@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (print_error("not enough args"));
-	flag = count_flags(argv);
+	flag = count_flags(argv); 
 	offset = count_offset(flag);
 	size = argc - offset - 1;
 	printf("flag: %d\noffset: %d\n", flag, offset);
@@ -33,15 +33,9 @@ int	main(int argc, char **argv)
 				return (print_error("wrong input"));
 		}
 		if (validate_repeat(input, size))
-		{
-			printf("repeats");
-			return (0);
-		}
+			print_error("repeat found");
 		if (validate_sorted(input, size))
-		{
-			printf("sorted");
-			return (0); 
-		}
+			print_error("sorted input");
 		while (g < size)
 		{
 			printf("%d\n", input[g]);

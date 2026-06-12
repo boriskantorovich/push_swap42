@@ -48,5 +48,3 @@ int	validate_arg(const char *nptr)
 	}
 	return (1);
 }
-
-
