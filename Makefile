@@ -4,27 +4,29 @@ NAME 		= push_swap
 
 CC 		= gcc
 CFLAGS 		= -Wall -Wextra -Werror
-INCLUDES 	= -Iincludes
 
 LIBFTDIR 	= ./libft
 LIBFTNAME 	= libft.a
 LIBFT		= $(LIBFTDIR)/$(LIBFTNAME)
 LFLAGS		= -L$(LIBFTDIR) -l$(patsubst lib%, %, $(LIBFTNAME:.a=))
 
+INCLUDES 	= -Iincludes -I$(LIBFTDIR)
+
 TESTDIR	 	= ./tests
 
-SRCS 		= helpers.c \
-		  stack_algo.c \
+SRCS 		= stack_algo.c \
 		  stack_api_push.c \
+		  stack_api_revrotate.c \
+		  stack_api_rotate.c \
 		  stack_api_swap.c \
-		  stack_init.c \
-		  stack_api.c
+		  stack_init.c 
+
 OBJ 		= $(SRCS:.c=.o)
 
 all: 		$(NAME)
 
 $(NAME): 	$(OBJ) $(LIBFT)
-		@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
 
 test:
 	@$(MAKE) -C $(TESTDIR)	
