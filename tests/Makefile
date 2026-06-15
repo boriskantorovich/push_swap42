@@ -3,26 +3,25 @@
 NAME 		= runtests 
 
 CC 		= gcc
-CFLAGS 		= -Wall -Wextra -Werror -g -O0
+CFLAGS 		= -Wall -Wextra -Werror -g -O0 -fsanitize=address -fno-omit-frame-pointer
 MAINDIR		= ..
-INCLUDES 	= -I$(MAINDIR)/includes
+
+include		$(MAINDIR)/sources.mk
+vpath %.c $(LOGICDIRS)
 
 LIBFTDIR 	= $(MAINDIR)/libft
 LIBFTNAME 	= libft.a
 LIBFT 		= $(LIBFTDIR)/$(LIBFTNAME)
 LFLAGS		= -L$(LIBFTDIR) -l$(patsubst lib%, %, $(LIBFTNAME:.a=))
 
+INCLUDES 	= -I$(MAINDIR)/includes -I$(LIBFTDIR)
+
 CRITDIR 	:= $(shell brew --prefix criterion 2>/dev/null)
 CRITINCL	= -I$(CRITDIR)/include 
 CRITLIB		= -L$(CRITDIR)/lib -lcriterion 
 
-MAINSRCS 	= helpers.c \
-		  stack_algo.c \
-		  stack_api_push.c \
-		  stack_api_swap.c \
-		  stack_init.c \
-		  stack_api_rotate.c \
-		  stack_api_revrotate.c
+MAINSRCS 	= $(LOGICSRCS)
+
 MAINOBJS 	= $(MAINSRCS:.c=.o)
 
 TESTSRCS	= $(wildcard *.c)
@@ -32,7 +31,7 @@ all: $(NAME)
 	@./$(NAME)
 
 $(NAME): 	$(MAINOBJS) $(TESTOBJS) $(LIBFT)
-		@$(CC) $(CFLAGS) $(MAINOBJS) $(TESTOBJS) $(LFLAGS) $(CRITLIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MAINOBJS) $(TESTOBJS) $(LFLAGS) $(CRITLIB) -fsanitize=address -o $(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) $(CRITINCL) -c $< -o $@
