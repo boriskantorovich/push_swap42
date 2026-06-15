@@ -1,4 +1,7 @@
-.PHONY: 	all clean fclean re test ret FORCE
+# before release: remove includes, .mk files paste sources here
+include sources.mk
+
+.PHONY: 	all clean fclean re test ret norm format FORCE
 
 NAME 		= push_swap
 
@@ -14,19 +17,14 @@ INCLUDES 	= -Iincludes -I$(LIBFTDIR)
 
 TESTDIR	 	= ./tests
 
-SRCS 		= stack_algo.c \
-		  stack_api_push.c \
-		  stack_api_revrotate.c \
-		  stack_api_rotate.c \
-		  stack_api_swap.c \
-		  stack_init.c 
+SRCS 		= $(LOGICSRCS)
 
-OBJ 		= $(SRCS:.c=.o)
+OBJS 		= $(SRCS:.c=.o)
 
 all: 		$(NAME)
 
-$(NAME): 	$(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME)
+$(NAME): 	$(OBJS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $(NAME)
 
 test:
 	@$(MAKE) -C $(TESTDIR)	
@@ -38,7 +36,7 @@ $(LIBFT): FORCE
 	@$(MAKE) -C $(LIBFTDIR)
 
 clean:
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJS)
 	@$(MAKE) clean -C $(LIBFTDIR)
 	@$(MAKE) clean -C $(TESTDIR)
 
@@ -50,5 +48,11 @@ fclean: clean
 re: fclean all
 
 ret: fclean test
+
+norm:
+	@norminette *.c includes/*.h | grep -v ": OK!" || echo "All OK!"
+
+format:
+	@c_formatter_42 *.c includes/*.h
 
 FORCE:
