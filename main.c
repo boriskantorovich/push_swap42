@@ -5,6 +5,8 @@ int	main(int argc, char **argv)
 	const int	size = argc - parse_offset(parse_flags(argv)) - 1;
 	int			*input;
 
+
+	/* STARTING WORKING ON RANKS */
 	if (argc == 1)
 		return (print_error("not enough args."));
 	if (size > 500)
