@@ -5,7 +5,7 @@ static int	ft_isdigit(int c)
 	return ((c >= '0' && c <= '9'));
 }
 
-int	ft_atoi(const char *nptr)
+static int	ft_atoi(const char *nptr)
 {
 	int			nb;
 	int			sgn;
@@ -25,7 +25,7 @@ int	ft_atoi(const char *nptr)
 	return (sgn * nb);
 }
 
-int	validate_arg(const char *nptr)
+static int	validate_arg(const char *nptr)
 {
 	unsigned long long	nb;
 	int					sgn;
@@ -47,4 +47,29 @@ int	validate_arg(const char *nptr)
 		nptr++;
 	}
 	return (1);
+}
+
+int	*validate_values(int argc, char **argv, int size)
+{
+	int	jndex;
+	int	index;
+	int	*input;
+
+	index = argc - size;
+	jndex = 0;
+	input = (int *)malloc(sizeof(int) * size);
+	if (!input)
+		return (NULL);
+	while (index < argc)
+	{
+		if (validate_arg(argv[index]))
+		{
+			input[jndex] = ft_atoi(argv[index]);
+			index++;
+			jndex++;
+		}
+		else
+			return (NULL);
+	}
+	return (input);
 }

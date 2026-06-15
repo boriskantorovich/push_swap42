@@ -6,7 +6,7 @@ int	print_error(char *err)
 	return (1);
 }
 
-int	validate_sorted(int *input, int size)
+static int	validate_sorted(int *input, int size)
 {
 	int	i;
 
@@ -14,30 +14,38 @@ int	validate_sorted(int *input, int size)
 	while (i < size - 1)
 	{
 		if (input[i] > input[i + 1])
-			return (0);
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
-int	validate_repeat(int *input, int n)
+static int	validate_repeat(int *input, int size)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	n -= 1;
-	while (i <= n)
+	size -= 1;
+	while (i <= size)
 	{
 		j = i + 1;
-		while (j <= n)
+		while (j <= size)
 		{
-			printf("i: %d, j: %d\n", input[i], input[j]);
 			if (input[i] == input[j])
 				return (1);
 			j++;
 		}
 		i++;
 	}
+	return (0);
+}
+
+int	validate_array(int *input, int size)
+{
+	if (validate_repeat(input, size) == 1)
+		return (2);
+	if (validate_sorted(input, size) == 1)
+		return (1);
 	return (0);
 }
