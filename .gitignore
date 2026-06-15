@@ -1,6 +1,12 @@
+# obj files and temp exectables
 *.out
 *.o
 *.a
 *.gch
+
+# executables
 tests/runtests
 push_swap
+
+# vim swap
+*.swp
