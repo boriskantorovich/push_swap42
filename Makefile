@@ -1,5 +1,6 @@
 # before release: remove includes, .mk files paste sources here
 include sources.mk
+vpath %.c $(LOGICDIRS)
 
 .PHONY: 	all clean fclean re test ret norm format FORCE
 
@@ -50,9 +51,10 @@ re: fclean all
 ret: fclean test
 
 norm:
-	@norminette *.c includes/*.h | grep -v ": OK!" || echo "All OK!"
+	@norminette $(shell find . -name '*.c' $(FINDEXCL)) includes/*.h \
+		| grep -v ": OK!" || echo "All OK!"
 
 format:
-	@c_formatter_42 *.c includes/*.h
+	@c_formatter_42 $(shell find . -name '*.c' $(FINDEXCL)) includes/*.h
 
 FORCE:
