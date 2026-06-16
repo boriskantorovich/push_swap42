@@ -12,7 +12,7 @@ int	helper_flag(char *value)
 		return (0);
 	while (i < 9)
 	{
-		if (!strcmp(value, values[i]))
+		if (!ft_strcmp(value, values[i]))
 			return (i);
 		i++;
 	}

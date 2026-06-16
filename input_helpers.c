@@ -25,6 +25,20 @@ static int	ft_atoi(const char *nptr)
 	return (sgn * nb);
 }
 
+static int	validate_int(const char *nptr)
+{
+	
+	if (*nptr == '-'&& ft_isdigit(*(nptr+1)))
+		nptr++;
+	while (*nptr)
+	{
+		if (!ft_isdigit(*nptr))
+			return (0);
+		nptr++;
+	}
+	return (1);
+}
+
 static int	validate_arg(const char *nptr)
 {
 	unsigned long long	nb;
@@ -62,14 +76,17 @@ int	*validate_values(int argc, char **argv, int size)
 		return (NULL);
 	while (index < argc)
 	{
-		if (validate_arg(argv[index]))
+		if (validate_int(argv[index]) && validate_arg(argv[index]))
 		{
 			input[jndex] = ft_atoi(argv[index]);
 			index++;
 			jndex++;
 		}
 		else
+		{
+			free(input);
 			return (NULL);
+		}
 	}
 	return (input);
 }
