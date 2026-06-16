@@ -41,6 +41,17 @@ static int	validate_repeat(int *input, int size)
 	return (0);
 }
 
+void	ft_swap(int *a, int *b)
+{
+	int	tmp;
+
+	if (!a || !b)
+		return ;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
 int	validate_array(int *input, int size)
 {
 	if (validate_repeat(input, size) == 1)

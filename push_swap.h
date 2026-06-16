@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 12:57:03 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/15 16:08:47 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/16 13:31:56 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,22 @@ typedef struct s_stack
 	size_t	n;
 }		t_stack;
 
+typedef struct s_ops
+{
+	int	counter[11];
+	int	total_ops;
+	int	flag;
+	int	strategy;
+	int	isbench;
+}		t_ops;
+
 int		parse_flags(char **argv);
 int		parse_offset(int flag);
 int		print_error(char *err);
 int		validate_array(int *input, int size);
 int		*validate_values(int argc, char **argv, int size);
+
+int		rank_array(int *input, int size);
+void	ft_swap(int *a, int *b);
 
 #endif

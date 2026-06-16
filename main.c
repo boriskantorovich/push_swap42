@@ -4,7 +4,7 @@ int	main(int argc, char **argv)
 {
 	const int	size = argc - parse_offset(parse_flags(argv)) - 1;
 	int			*input;
-
+	int			g = 0;
 
 	/* STARTING WORKING ON RANKS */
 	if (argc == 1)
@@ -20,6 +20,13 @@ int	main(int argc, char **argv)
 			return (print_error("repeat found."));
 		if (validate_array(input, size) == 0)
 			return (print_error("sorted order."));
+
+		rank_array(input, size);
+		while (g < size)
+		{
+			printf("[%d]", input[g]);
+			g++;
+		}
 	}
 	return (0);
 }
