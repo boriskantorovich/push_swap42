@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dispatcher.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/16 11:30:09 by bkantoro          #+#    #+#             */
+/*   Updated: 2026/06/16 11:33:07 by bkantoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 double	compute_disorder(t_stack *a)
@@ -27,6 +39,17 @@ double	compute_disorder(t_stack *a)
 	return ((double)mistakes / (double)total_pairs);
 }
 
+void	dispatch_small_helper(t_stack *a, t_stack *b, t_stack *ops)
+{
+	ops->strategy = ALG_SIMPLE;
+	if (a->size == 2)
+		sort_two(a, ops);
+	else if (a->size == 3)
+		sort_three(a, ops);
+	else
+		selection_sort(a, b, ops);
+}
+
 void	dispatch(t_stack *a, t_stack *b, t_ops *ops)
 {
 	double	disorder;
@@ -35,13 +58,7 @@ void	dispatch(t_stack *a, t_stack *b, t_ops *ops)
 		return ;
 	if (a->size <= 5)
 	{
-		ops->strategy = ALG_SIMPLE;
-		if (a->size == 2)
-			sort_two(a, ops);
-		else if (a->size == 3)
-			sort_three(a, ops);
-		else
-			selection_sort(a, b, ops);
+		dispatch_small_helper(a, b, ops);
 		return ;
 	}
 	disorder = compute_disorder(a);
