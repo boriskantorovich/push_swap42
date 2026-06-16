@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-t_ops	init_ops(int flag, int isbench)
+t_ops	*init_ops(int flag, int isbench)
 {
-	t_ops	new;
+	t_ops	*new;
 
-	new = (t_ops){0};
-	new.flag = flag;
-	new.isbench = isbench;
+	new = (t_ops *){0};
+	new->flag = flag;
+	new->isbench = isbench;
 	return (new);
 }
