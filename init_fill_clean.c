@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 13:17:21 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/16 13:56:19 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/16 19:34:28 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_stack	*init_stack(int size)
 
 	if (size <= 0)
 	{
-		print_error("size less then 0.");
+		print_error();
 		return (NULL);
 	}
 	new = malloc(sizeof(t_stack));

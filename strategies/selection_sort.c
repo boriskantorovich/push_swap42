@@ -6,11 +6,12 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 11:34:00 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/16 15:53:45 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/16 20:24:24 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "operations.h"
 
 int	find_pos(t_stack *st, int value)
 {

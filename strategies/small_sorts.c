@@ -6,10 +6,9 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 11:34:10 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/16 11:34:11 by bkantoro         ###   ########.fr       */
+/*   Updated: 2026/06/16 20:28:36 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
 void	sort_two(t_stack *a, t_ops *ops)

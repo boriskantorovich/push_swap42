@@ -4,8 +4,8 @@
 int	helper_flag(char *value)
 {
 	int			i;
-	const char	*values[] = {" ", " ", "--simple", "--bench",
-		"--medium", " ", "--complex", " ", "--adaptive"}; 
+	const char	*values[] = {" ", " ", "--simple", "--bench", "--medium", " ",
+			"--complex", " ", "--adaptive"};
 
 	i = 2;
 	if (!value)
@@ -32,8 +32,8 @@ int	parse_flags(char **argv)
 	if (argv[2] && argv[2][0] == '-' && argv[2][1] == '-')
 	{
 		tmp = helper_flag(argv[2]);
-		if (tmp == 0 || tmp == res || (tmp != 0 && res != 0 
-				&& ((res + tmp) % 2 == 0)))
+		if (tmp == 0 || tmp == res || (tmp != 0 && res != 0 && ((res + tmp)
+					% 2 == 0)))
 			return (0);
 		res += tmp;
 	}
@@ -44,7 +44,7 @@ int	parse_offset(int flag)
 {
 	if (flag != 0)
 	{
-		if (flag == 3 || (flag % 2 == 0)) 
+		if (flag == 3 || (flag % 2 == 0))
 			return (1);
 		else if (flag % 2 == 1)
 			return (2);

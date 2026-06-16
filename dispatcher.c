@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 11:30:09 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/16 15:28:47 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/16 19:24:43 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	dispatch(t_stack *a, t_stack *b, t_ops *ops)
 		return ;
 	}
 	disorder = compute_disorder(a);
-	printf("disorder: [%f]\n", disorder);
+	/* printf("disorder: [%f]\n", disorder); */
 	if (disorder < 0.2)
 		ops->strategy = ALG_SIMPLE;
 	else if (disorder < 0.5)

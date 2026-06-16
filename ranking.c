@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ranking.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 11:28:39 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/16 13:29:26 by milnicki         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 static void	swap_two(int *val, int *idx, int i, int j)
@@ -64,7 +52,7 @@ static void	apply_ranks(int *input, int *idx, int size)
 	i = 0;
 	while (i < size)
 	{
-		input[idx[i]] = i;
+		input[idx[i]] = i; // try i++
 		i++;
 	}
 }

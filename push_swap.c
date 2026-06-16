@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 11:36:42 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/16 14:36:31 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/16 17:54:42 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	push_swap(int *input, int size, int flag)
 		return (-1);
 	}
 	isbench = ((flag - 3) % 2 == 0);
-	printf("isbench: [%d]\n", isbench);
-	printf("flag: [%d]\n", flag);
+	/* printf("isbench: [%d]\n", isbench); */
+	/* printf("flag: [%d]\n", flag); */
 	ops = init_ops(flag, isbench);
 	fill_stack(a, input, size);
 	dispatch(a, b, ops);

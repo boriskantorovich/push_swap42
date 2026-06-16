@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-int	print_error(char *err)
+int	print_error(void)
 {
-	printf("Error: %s\n", err);
-	return (1);
+	write(2, "Error\n", 6);
+	return(2);
 }
 
 static int	validate_sorted(int *input, int size)
@@ -60,7 +60,7 @@ void	ft_bzero(void *arr, size_t size)
 	if (!arr)
 		return ;
 	ptr = (unsigned char *)arr;
-	i = 0; 
+	i = 0;
 	while (i < size)
 		ptr[i++] = 0;
 }

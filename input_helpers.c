@@ -7,8 +7,8 @@ static int	ft_isdigit(int c)
 
 static int	ft_atoi(const char *nptr)
 {
-	int			nb;
-	int			sgn;
+	int	nb;
+	int	sgn;
 
 	nb = 0;
 	sgn = 1;
@@ -27,8 +27,7 @@ static int	ft_atoi(const char *nptr)
 
 static int	validate_int(const char *nptr)
 {
-	
-	if (*nptr == '-'&& ft_isdigit(*(nptr+1)))
+	if (*nptr == '-' && ft_isdigit(*(nptr + 1)))
 		nptr++;
 	while (*nptr)
 	{
