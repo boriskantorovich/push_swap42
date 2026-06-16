@@ -39,7 +39,7 @@ double	compute_disorder(t_stack *a)
 	return ((double)mistakes / (double)total_pairs);
 }
 
-void	dispatch_small_helper(t_stack *a, t_stack *b, t_stack *ops)
+void	dispatch_small_helper(t_stack *a, t_stack *b, t_ops *ops)
 {
 	ops->strategy = ALG_SIMPLE;
 	if (a->size == 2)
