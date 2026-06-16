@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   radix_sort.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 11:33:42 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/16 17:10:06 by milnicki         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 static int	find_max_bit(int a)
@@ -23,6 +11,24 @@ static int	find_max_bit(int a)
 		a = a / 2;
 	}
 	return (n);
+}
+
+static int	get_max_pos(t_stack *stack)
+{
+	int	i;
+	int	max_pos;
+
+	if (!stack || !stack->count)
+		return (-1);
+	i = 0;
+	max_pos = 0;
+	while (i < stack->count)
+	{
+		if (stack->numbers[max_pos] < stack->numbers[i])
+			max_pos = i;
+		i++;
+	}
+	return (max_pos);
 }
 
 void	radix_sort(t_stack *a, t_stack *b, t_ops *ops)

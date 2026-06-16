@@ -45,9 +45,6 @@ int		ft_strcmp(const char *s1, const char *s2);
 t_stack	*init_stack(int n);
 int		fill_stack(t_stack *stack, int *input, int n);
 int		clear_stack(t_stack *stack);
-int		get_max_pos(t_stack *stack);
-
-void	dispatch(t_stack *a, t_stack *b, t_ops *ops);
 void	print_bench(t_ops *o, double disorder);
 
 #endif

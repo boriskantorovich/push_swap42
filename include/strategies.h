@@ -8,6 +8,8 @@
 # define ALG_COMPLEX 3
 # define ALG_ADAPTIVE 4
 
+
+void	dispatch(t_stack *a, t_stack *b, t_ops *ops);
 void	radix_sort(t_stack *a, t_stack *b, t_ops *ops);
 void	selection_sort(t_stack *a, t_stack *b, t_ops *ops);
 void	chunk_sort(t_stack *a, t_stack *b, t_ops *ops);
