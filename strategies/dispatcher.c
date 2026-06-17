@@ -29,7 +29,7 @@ double	compute_disorder(t_stack *a)
 
 static void	dispatch_small_helper(t_stack *a, t_stack *b, t_ops *ops)
 {
-	ops->strategy = ALG_SIMPLE;
+	ops->strategy = "simple"; // ALG_SIMPLE;
 	if (a->size == 2)
 		sort_two(a, ops);
 	else if (a->size == 3)
@@ -49,17 +49,17 @@ static void	dispatch_helper(t_stack *a, t_stack *b, t_ops *ops)
 	}
 	if (disorder < 0.2)
 	{
-		ops->strategy = ALG_SIMPLE;
+		ops->strategy = "adaptive/simple O(n2) ";
 		selection_sort(a, b, ops);
 	}
 	else if (disorder < 0.5)
 	{
-		ops->strategy = ALG_MEDIUM;
+		ops->strategy = "adaptive/medium O(n√n)";
 		chunk_sort(a, b, ops);
 	}
 	else
 	{
-		ops->strategy = ALG_COMPLEX;
+		ops->strategy = "adaptive/complex O(n log n)";
 		radix_sort(a, b, ops);
 	}
 }

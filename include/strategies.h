@@ -3,10 +3,10 @@
 
 # include "push_swap.h"
 
-# define ALG_SIMPLE 4
-# define ALG_MEDIUM 6
-# define ALG_COMPLEX 8
-# define ALG_ADAPTIVE 4
+# define ALG_SIMPLE "Simple"
+# define ALG_MEDIUM "Medium"
+# define ALG_COMPLEX "Complex"
+# define ALG_ADAPTIVE "Adaptive/"
 
 void	dispatch(t_stack *a, t_stack *b, t_ops *ops, int flag);
 void	radix_sort(t_stack *a, t_stack *b, t_ops *ops);

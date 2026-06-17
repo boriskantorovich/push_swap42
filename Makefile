@@ -49,7 +49,7 @@ fclean: clean
 re: fclean all
 
 all:
-	@gcc -g -I include operations/* strategies/* utils/* input/*  *.c -o push_swap 
+	@gcc -lbsd -g -I include operations/* strategies/* utils/* input/*  *.c -o push_swap 
 ret: fclean test
 
 norm:

@@ -4,6 +4,7 @@
 # include "limits.h"
 # include "stdio.h"
 # include "string.h"
+# include "bsd/string.h"
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -17,11 +18,11 @@ typedef struct s_stack
 
 typedef struct s_ops
 {
-	int	counter[11];
-	int	total_ops;
-	int	flag;
-	int	strategy;
-	int	isbench;
+	int		counter[11];
+	int		total_ops;
+	int		flag;
+	char	*strategy;
+	int		isbench;
 }		t_ops;
 
 # include "operations.h"
