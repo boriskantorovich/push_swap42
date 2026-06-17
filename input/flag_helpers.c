@@ -3,9 +3,8 @@
 int	helper_flag(char *value)
 {
 	int			i;
-	const char	*values[] = {" ", " ", " ", "--bench", "--simple", " ", "--medium", " ",
-			"--complex", " ", "--adaptive"}; //even 2,4,6,8 odd 1,3,5,7,9
-
+	const char	*values[] = {" ", " ", " ", "--bench", "--simple", " ",
+		"--medium", " ", "--complex", " ", "--adaptive"};
 
 	i = 2;
 	if (!value)

@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
 		if (validate_array(input, size) == 2)
 			return (print_error());
 		if (validate_array(input, size) == 0)
-			return (print_error());
+			return (0);
 		rank_array(input, size);
 		push_swap(input, size, flag);
 		free(input);

@@ -84,6 +84,8 @@ void	dispatch(t_stack *a, t_stack *b, t_ops *ops, int flag)
 			ops->strategy = ALG_COMPLEX;
 			radix_sort(a, b, ops);
 		}
+		else 
+			dispatch_helper(a, b, ops);
 	}
 	else 
 		dispatch_helper(a, b, ops);

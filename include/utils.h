@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-#include "push_swap.h"
+# include "push_swap.h"
 
 int		print_error(void);
 void	ft_swap(int *a, int *b);

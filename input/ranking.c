@@ -52,7 +52,7 @@ static void	apply_ranks(int *input, int *idx, int size)
 	i = 0;
 	while (i < size)
 	{
-		input[idx[i]] = i; // try i++
+		input[idx[i]] = i; 
 		i++;
 	}
 }

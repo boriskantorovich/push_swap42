@@ -3,7 +3,7 @@
 int	print_error(void)
 {
 	write(2, "Error\n", 6);
-	return(2);
+	return (2);
 }
 
 void	ft_swap(int *a, int *b)

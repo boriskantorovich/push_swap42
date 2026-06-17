@@ -7,3 +7,10 @@
 *.swp
 checker*
 push_swap
+test*
+*test
+*.txt
+*test*
+checker*
+*checker
+push_swap

@@ -1,7 +1,7 @@
 #ifndef STRATEGIES_H
 # define STRATEGIES_H
 
-#include "push_swap.h"
+# include "push_swap.h"
 
 # define ALG_SIMPLE 4
 # define ALG_MEDIUM 6

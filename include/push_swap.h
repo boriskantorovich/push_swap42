@@ -1,7 +1,6 @@
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-/* # include "assert.h" */
 # include "limits.h"
 # include "stdio.h"
 # include "string.h"
@@ -44,6 +43,5 @@ int		clear_stack(t_stack *stack);
 void	print_bench(t_ops *o, double disorder);
 void	bench(t_ops *o, double disorder, int isbench);
 double	compute_disorder(t_stack *a);
-
 
 #endif
