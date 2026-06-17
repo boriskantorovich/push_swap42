@@ -1,5 +1,5 @@
 # before release: remove includes, .mk files paste sources here
-include sources.mk
+# include sources.mk
 vpath %.c $(LOGICDIRS)
 
 .PHONY: 	all clean fclean re test ret norm format FORCE
@@ -22,7 +22,7 @@ SRCS 		= $(LOGICSRCS)
 
 OBJS 		= $(SRCS:.c=.o)
 
-all: 		$(NAME)
+# all: 		$(NAME)
 
 $(NAME): 	$(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $(NAME)
@@ -48,6 +48,8 @@ fclean: clean
 
 re: fclean all
 
+all:
+	@gcc -g -I include operations/* strategies/* utils/* input/*  *.c -o push_swap 
 ret: fclean test
 
 norm:

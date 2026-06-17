@@ -3,14 +3,14 @@
 int	helper_flag(char *value)
 {
 	int			i;
-	const char	*values[] = {" ", " ", "--simple", "--bench", "--medium", " ",
+	const char	*values[] = {" ", " ", " ", "--bench", "--simple", " ", "--medium", " ",
 			"--complex", " ", "--adaptive"}; //even 2,4,6,8 odd 1,3,5,7,9
 
 
 	i = 2;
 	if (!value)
 		return (0);
-	while (i < 9)
+	while (i < 11)
 	{
 		if (!ft_strcmp(value, values[i]))
 			return (i);

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static double	compute_disorder(t_stack *a)
+double	compute_disorder(t_stack *a)
 {
 	int		i;
 	int		j;
@@ -38,29 +38,53 @@ static void	dispatch_small_helper(t_stack *a, t_stack *b, t_ops *ops)
 		selection_sort(a, b, ops);
 }
 
-void	dispatch(t_stack *a, t_stack *b, t_ops *ops)
+static void	dispatch_helper(t_stack *a, t_stack *b, t_ops *ops)
 {
-	double	disorder;
+	const double	disorder = compute_disorder(a);
 
-	/* if (!a || a->size <= 1 || compute_disorder(a) == 0.0) */
-	/* 	return ; */
 	if (a->size <= 5)
 	{
 		dispatch_small_helper(a, b, ops);
 		return ;
 	}
-	disorder = compute_disorder(a);
-	/* printf("disorder: [%f]\n", disorder); */
 	if (disorder < 0.2)
+	{
 		ops->strategy = ALG_SIMPLE;
-	else if (disorder < 0.5)
-		ops->strategy = ALG_MEDIUM;
-	else
-		ops->strategy = ALG_COMPLEX;
-	if (ops->strategy == ALG_SIMPLE)
 		selection_sort(a, b, ops);
-	else if (ops->strategy == ALG_MEDIUM)
+	}
+	else if (disorder < 0.5)
+	{
+		ops->strategy = ALG_MEDIUM;
 		chunk_sort(a, b, ops);
+	}
 	else
+	{
+		ops->strategy = ALG_COMPLEX;
 		radix_sort(a, b, ops);
+	}
+}
+
+void	dispatch(t_stack *a, t_stack *b, t_ops *ops, int flag)
+{
+	flag -= 3;
+	if (flag > 0 && flag % 2 == 0)
+	{
+		if (flag == 4)
+		{
+			ops->strategy = ALG_SIMPLE;
+			selection_sort(a, b, ops);
+		}
+		else if (flag == 6)
+		{
+			ops->strategy = ALG_MEDIUM;
+			chunk_sort(a, b, ops);
+		}
+		else if (flag == 8)
+		{
+			ops->strategy = ALG_COMPLEX;
+			radix_sort(a, b, ops);
+		}
+	}
+	else 
+		dispatch_helper(a, b, ops);
 }

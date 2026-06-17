@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 11:36:42 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/16 17:54:42 by milnicki         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
 int	push_swap(int *input, int size, int flag)
@@ -30,11 +18,11 @@ int	push_swap(int *input, int size, int flag)
 		return (-1);
 	}
 	isbench = ((flag - 3) % 2 == 0);
-	/* printf("isbench: [%d]\n", isbench); */
-	/* printf("flag: [%d]\n", flag); */
 	ops = init_ops(flag, isbench);
 	fill_stack(a, input, size);
-	dispatch(a, b, ops);
+	const double disorder = compute_disorder(a);
+	dispatch(a, b, ops, flag);
+	bench(ops, disorder, isbench);
 	clear_stack(a);
 	clear_stack(b);
 	return (0);

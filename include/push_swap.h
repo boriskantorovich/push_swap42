@@ -42,5 +42,8 @@ t_stack	*init_stack(int n);
 int		fill_stack(t_stack *stack, int *input, int n);
 int		clear_stack(t_stack *stack);
 void	print_bench(t_ops *o, double disorder);
+void	bench(t_ops *o, double disorder, int isbench);
+double	compute_disorder(t_stack *a);
+
 
 #endif

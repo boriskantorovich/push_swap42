@@ -15,7 +15,8 @@ t_ops	*init_ops(int flag, int isbench)
 
 void	do_op(t_ops *ops, int op, char *name)
 {
-	write(1, name, ft_strlen(name));
+	if (!ops->isbench)
+		write(1, name, ft_strlen(name));
 	ops->counter[op]++;
 	ops->total_ops++;
 }
