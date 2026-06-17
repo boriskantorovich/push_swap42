@@ -2,7 +2,6 @@
 # define PUSH_SWAP_H
 
 # include "limits.h"
-# include "stdio.h"
 # include "string.h"
 # include "bsd/string.h"
 # include <stddef.h>
@@ -28,6 +27,7 @@ typedef struct s_ops
 # include "operations.h"
 # include "strategies.h"
 # include "utils.h"
+# include "ft_printf.h"
 
 int		push_swap(int *input, int size, int flag);
 

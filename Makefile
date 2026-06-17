@@ -1,7 +1,3 @@
-# before release: remove includes, .mk files paste sources here
-# include sources.mk
-vpath %.c $(LOGICDIRS)
-
 .PHONY: 	all clean fclean re test ret norm format FORCE
 
 NAME 		= push_swap
@@ -9,12 +5,12 @@ NAME 		= push_swap
 CC 		= gcc
 CFLAGS 		= -Wall -Wextra -Werror
 
-LIBFTDIR 	= ./libft
-LIBFTNAME 	= libft.a
+LIBFTDIR 	= ./ft_printf
+LIBFTNAME 	= libftprintf.a
 LIBFT		= $(LIBFTDIR)/$(LIBFTNAME)
 LFLAGS		= -L$(LIBFTDIR) -l$(patsubst lib%, %, $(LIBFTNAME:.a=))
 
-INCLUDES 	= -Iincludes -I$(LIBFTDIR)
+INCLUDES 	= -Iinclude -I$(LIBFTDIR)
 
 TESTDIR	 	= ./tests
 
@@ -49,7 +45,7 @@ fclean: clean
 re: fclean all
 
 all:
-	@gcc -lbsd -g -I include operations/* strategies/* utils/* input/*  *.c -o push_swap 
+	@gcc -g $(INCLUDES) operations/* strategies/* utils/* input/* *.c $(LFLAGS) -o push_swap 
 ret: fclean test
 
 norm:
