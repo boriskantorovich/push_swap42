@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "operations.h"
+#include "push_swap.h"
 
 int	find_pos(t_stack *st, int value)
 {
@@ -49,7 +49,10 @@ void	selection_sort(t_stack *a, t_stack *b, t_ops *ops)
 		pb(a, b, ops);
 		min++;
 	}
-	sort_three(a, ops);
+	if (a->count == 3)
+		sort_three(a, ops);
+	else if (a->count == 2)
+		sort_two(a, ops);
 	while (b->count > 0)
 		pa(a, b, ops);
 }

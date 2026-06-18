@@ -20,10 +20,10 @@ static int	validate_repeat(int *input, int size)
 	int	j;
 
 	i = 0;
-	while (i <= size)
+	while (i < size - 1)
 	{
 		j = i + 1;
-		while (j <= size)
+		while (j < size)
 		{
 			if (input[i] == input[j])
 				return (1);

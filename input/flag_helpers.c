@@ -4,7 +4,7 @@ int	helper_flag(char *value)
 {
 	int			i;
 	const char	*values[] = {" ", " ", " ", "--bench", "--simple", " ",
-		"--medium", " ", "--complex", " ", "--adaptive"};
+			"--medium", " ", "--complex", " ", "--adaptive"};
 
 	i = 2;
 	if (!value)

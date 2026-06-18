@@ -27,6 +27,8 @@ static int	ft_atoi(const char *nptr)
 
 static int	validate_int(const char *nptr)
 {
+	if (!*nptr)
+		return (0);
 	if (*nptr == '-' && ft_isdigit(*(nptr + 1)))
 		nptr++;
 	while (*nptr)
