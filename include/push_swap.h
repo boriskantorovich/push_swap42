@@ -6,6 +6,9 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+// testingpur[psess
+#include <stdio.h>
+#include <math.h>
 
 typedef struct s_stack
 {
@@ -40,7 +43,6 @@ int			rank_array(int *input, int size);
 t_stack		*init_stack(int n);
 int			fill_stack(t_stack *stack, int *input, int n);
 int			clear_stack(t_stack *stack);
-void		print_bench(t_ops *o, double disorder);
 void		bench(t_ops *o, double disorder, int isbench);
 double		compute_disorder(t_stack *a);
 

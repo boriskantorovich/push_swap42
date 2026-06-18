@@ -1,10 +1,12 @@
 #include "push_swap.h"
 
-void	print_bench(t_ops *o, double disorder)
+void	bench(t_ops *o, double disorder, int isbench)
 {
 	int	whole;
 	int	fraction;
 
+	if (isbench)
+	{
 	whole = (int)(disorder * 100);
 	fraction = (int)(disorder * 10000) % 100;
 	ft_printf("[bench] disorder:  %d.%d%d%%\n"
@@ -28,9 +30,9 @@ void	print_bench(t_ops *o, double disorder)
 				o->counter[OP_RRB],
 				o->counter[OP_RRR]);
 }
-
-void	bench(t_ops *o, double disorder, int isbench)
-{
-	if (isbench)
-		print_bench(o, disorder);
 }
+/* void	bench(t_ops *o, double disorder,) */
+/* { */
+/* 	if (isbench) */
+/* 		print_bench(o, disorder); */
+/* } */

@@ -13,7 +13,7 @@ static int	find_max_bit(int a)
 	return (n);
 }
 
-static int	get_max_pos(t_stack *stack)
+int	get_max_pos(t_stack *stack)
 {
 	int	i;
 	int	max_pos;

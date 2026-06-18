@@ -3,7 +3,7 @@
 NAME 		= push_swap
 
 CC 		= gcc
-CFLAGS 		= -Wall -Wextra -Werror
+CFLAGS 		= -g -Wall -Wextra -Werror
 
 PRINTFDIR 	= ./ft_printf
 PRINTFNAME 	= libftprintf.a
@@ -19,7 +19,7 @@ OBJS 		= $(SRCS:.c=.o)
 all: 		$(NAME)
 
 $(NAME): 	$(OBJS) $(PRINTF)
-	@$(CC) $(CFLAGS) $(OBJS) $ $(PRINTFLFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $ $(PRINTFLFLAGS) -o $(NAME) -lm
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
