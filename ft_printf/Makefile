@@ -8,20 +8,21 @@ AR      = ar -rcs
 
 LIBFT	= libft.a
 LIBDIR	= ./libft
+LNAME	= $(LIBDIR)/$(LIBFT)
 
 SRCS    = ft_printf.c utils.c putstrs.c putnbrs.c route.c
 OBJS    = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(LIBDIR)/$(LIBFT) $(OBJS)
+$(NAME): $(LNAME) $(OBJS)
 	@cp $(LIBDIR)/$(LIBFT) $(NAME)
 	$(AR) $(NAME) $(OBJS)
 
 %.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-LIBFT:
+$(LNAME):
 	@make -C $(LIBDIR)
 
 test: $(NAME)
@@ -30,9 +31,11 @@ test: $(NAME)
 
 clean:
 	@rm -rf $(OBJS)
+	@make clean -C $(LIBDIR)
 
 fclean: clean
 	@rm -rf $(NAME) test_printf
+	@make fclean -C $(LIBDIR)
 
 re: fclean all
 
