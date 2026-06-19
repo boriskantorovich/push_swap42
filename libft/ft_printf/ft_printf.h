@@ -6,14 +6,14 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 19:34:01 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/17 16:31:30 by bkantoro         ###   ########.fr       */
+/*   Updated: 2026/06/19 12:37:08 by bkantoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft/libft.h"
+# include "../libft.h"
 # include <stdarg.h>
 # include <unistd.h>
 

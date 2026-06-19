@@ -6,7 +6,7 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 21:51:42 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/18 18:11:39 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/19 13:34:31 by bkantoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), \
 					void (*del)(void *));
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
-int 				ft_sqrt(int nb);
+int					ft_sqrt(int nb);
 
 #endif

@@ -7,7 +7,7 @@ CFLAGS  = -Wall -Wextra -Werror -fPIE
 AR      = ar -rcs
 
 LIBFT	= libft.a
-LIBDIR	= ./libft
+LIBDIR	= ../
 LNAME	= $(LIBDIR)/$(LIBFT)
 
 SRCS    = ft_printf.c utils.c putstrs.c putnbrs.c route.c
