@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flag_helpers.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/19 13:08:45 by bkantoro          #+#    #+#             */
+/*   Updated: 2026/06/19 13:10:21 by bkantoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	helper_flag(char *value)
 {
 	int			i;
-	const char	*values[] = {" ", " ", " ", "--bench", "--simple", " ",
+	const char	*values[] = {" ", " ", " ", "--bench", "--simple", " ", \
 			"--medium", " ", "--complex", " ", "--adaptive"};
 
 	i = 2;

@@ -1,4 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/19 13:12:15 by bkantoro          #+#    #+#             */
+/*   Updated: 2026/06/19 13:14:52 by bkantoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+
+void	free_all(t_stack *a, t_stack *b, t_ops *ops)
+{
+	free(a);
+	free(b);
+	free(ops);
+}
 
 int	push_swap(int *input, int size, int flag)
 {
@@ -16,9 +35,7 @@ int	push_swap(int *input, int size, int flag)
 	ops = init_ops(flag, isbench);
 	if (!a || !b || !ops)
 	{
-		free(a);
-		free(b);
-		free(ops);
+		free_all(a, b, ops);
 		return (-1);
 	}
 	fill_stack(a, input, size);

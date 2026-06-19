@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strategies.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/19 13:07:57 by bkantoro          #+#    #+#             */
+/*   Updated: 2026/06/19 13:08:19 by bkantoro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRATEGIES_H
 # define STRATEGIES_H
 
@@ -18,6 +30,5 @@ void	sort_two(t_stack *a, t_ops *ops);
 void	radix_sort(t_stack *a, t_stack *b, t_ops *ops);
 void	sort_three(t_stack *a, t_ops *ops);
 int		get_max_pos(t_stack *stack);
-
 
 #endif
