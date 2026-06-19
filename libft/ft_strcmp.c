@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.h                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                       :+:      :+:    :+:    */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 13:07:31 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/19 13:07:33 by bkantoro         ###   ########.fr       */
+/*   Created: 2026/05/12 12:36:20 by bkantoro          #+#    #+#             */
+/*   Updated: 2026/05/12 12:36:52 by bkantoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUT_H
-# define INPUT_H
+#include "libft.h"
 
-# include "push_swap.h"
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	const unsigned char	*t1;
+	const unsigned char	*t2;
 
-int	parse_flags(char **argv);
-int	parse_offset(int flag);
-int	validate_array(int *input, int size);
-int	*validate_values(int argc, char **argv, int size);
-int	rank_array(int *input, int size);
-
-#endif
+	if (!s1 || !s2)
+		return (0);
+	t1 = (const unsigned char *)s1;
+	t2 = (const unsigned char *)s2;
+	while (*t1 && *t1 == *t2)
+	{
+		t1++;
+		t2++;
+	}
+	return (*t1 - *t2);
+}

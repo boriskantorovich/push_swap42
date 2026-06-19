@@ -9,10 +9,9 @@
 /*   Updated: 2026/06/19 13:14:52 by bkantoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
-void	free_all(t_stack *a, t_stack *b, t_ops *ops)
+static void	free_all(t_stack *a, t_stack *b, t_ops *ops)
 {
 	free(a);
 	free(b);

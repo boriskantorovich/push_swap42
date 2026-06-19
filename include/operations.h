@@ -27,22 +27,26 @@
 # define OP_RRB 9
 # define OP_RRR 10
 
-typedef struct s_stack	t_stack;
 typedef struct s_ops	t_ops;
+typedef struct s_stack	t_stack;
 
-t_ops	*init_ops(int flag, int isbench);
-void	do_op(t_ops *ops, int op, char *name);
+void		do_op(t_ops *ops, int op, char *name);
+t_ops		*init_ops(int flag, int isbench);
 
-void	sa(t_stack *a, t_ops *ops);
-void	sb(t_stack *b, t_ops *ops);
-void	ss(t_stack *a, t_stack *b, t_ops *ops);
-void	pa(t_stack *a, t_stack *b, t_ops *ops);
-void	pb(t_stack *a, t_stack *b, t_ops *ops);
-void	ra(t_stack *a, t_ops *ops);
-void	rb(t_stack *b, t_ops *ops);
-void	rr(t_stack *a, t_stack *b, t_ops *ops);
-void	rra(t_stack *a, t_ops *ops);
-void	rrb(t_stack *b, t_ops *ops);
-void	rrr(t_stack *a, t_stack *b, t_ops *ops);
+int			clear_stack(t_stack *stack);
+int			fill_stack(t_stack *stack, int *input, int n);
+t_stack		*init_stack(int n);
+
+void		sa(t_stack *a, t_ops *ops);
+void		sb(t_stack *b, t_ops *ops);
+void		ss(t_stack *a, t_stack *b, t_ops *ops);
+void		pa(t_stack *a, t_stack *b, t_ops *ops);
+void		pb(t_stack *a, t_stack *b, t_ops *ops);
+void		ra(t_stack *a, t_ops *ops);
+void		rb(t_stack *b, t_ops *ops);
+void		rr(t_stack *a, t_stack *b, t_ops *ops);
+void		rra(t_stack *a, t_ops *ops);
+void		rrb(t_stack *b, t_ops *ops);
+void		rrr(t_stack *a, t_stack *b, t_ops *ops);
 
 #endif

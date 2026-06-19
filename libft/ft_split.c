@@ -40,8 +40,8 @@ static void	ft_freechararr(char **array, size_t size)
 	ptr = *array;
 	while (size--)
 	{
-		free((void *)ptr);
 		ptr++;
+		free((void *)ptr);
 	}
 	free(array);
 }

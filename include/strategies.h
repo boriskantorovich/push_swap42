@@ -22,13 +22,20 @@
 # define ALG_ADA_MEDIUM "Adaptive / O(n√n)"
 # define ALG_ADA_COMPLEX "Adaptive / O(n log n)"
 
-void	dispatch(t_stack *a, t_stack *b, t_ops *ops, int flag);
-void	radix_sort(t_stack *a, t_stack *b, t_ops *ops);
-void	selection_sort(t_stack *a, t_stack *b, t_ops *ops);
-void	chunk_sort(t_stack *a, t_stack *b, t_ops *ops);
-void	sort_two(t_stack *a, t_ops *ops);
-void	radix_sort(t_stack *a, t_stack *b, t_ops *ops);
-void	sort_three(t_stack *a, t_ops *ops);
-int		get_max_pos(t_stack *stack);
+typedef struct s_stack	t_stack;
+typedef struct s_ops	t_ops;
+
+void		radix_sort(t_stack *a, t_stack *b, t_ops *ops);
+
+void		chunk_sort(t_stack *a, t_stack *b, t_ops *ops);
+
+int			get_max_pos(t_stack *stack);
+
+void		selection_sort(t_stack *a, t_stack *b, t_ops *ops);
+void		sort_three(t_stack *a, t_ops *ops);
+void		sort_two(t_stack *a, t_ops *ops);
+
+void		dispatch(t_stack *a, t_stack *b, t_ops *ops, int flag);
+double		compute_disorder(t_stack *a);
 
 #endif

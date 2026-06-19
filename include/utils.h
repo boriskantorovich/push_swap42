@@ -9,17 +9,17 @@
 /*   Updated: 2026/06/19 13:08:27 by bkantoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef UTILS_H
 # define UTILS_H
 
 # include "push_swap.h"
 
+void	bench(t_ops *o, double disorder, int isbench);
+int		rank_array(int *input, int size);
+int		validate_array(int *input, int size);
+int		*validate_values(int argc, char **argv, int size);
+int		parse_offset(int flag);
+int		parse_flags(char **argv);
 int		print_error(void);
-void	ft_swap(int *a, int *b);
-void	ft_bzero(void *arr, size_t size);
-size_t	ft_strlen(const char *s);
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_sqrt(int nb);
 
 #endif

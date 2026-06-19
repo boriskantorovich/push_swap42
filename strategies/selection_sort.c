@@ -13,7 +13,7 @@
 #include "operations.h"
 #include "push_swap.h"
 
-int	find_pos(t_stack *st, int value)
+static int	find_pos(t_stack *st, int value)
 {
 	int	i;
 

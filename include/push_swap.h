@@ -38,12 +38,7 @@ typedef struct s_ops
 	char	*strategy;
 	int		isbench;
 }			t_ops;
-int			push_swap(int *input, int size, int flag);
 
-t_stack		*init_stack(int n);
-int			fill_stack(t_stack *stack, int *input, int n);
-int			clear_stack(t_stack *stack);
-void		bench(t_ops *o, double disorder, int isbench);
-double		compute_disorder(t_stack *a);
+int			push_swap(int *input, int size, int flag);
 
 #endif
