@@ -18,6 +18,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# include "ft_printf.h"
+# include "operations.h"
+# include "strategies.h"
+# include "utils.h"
+
 typedef struct s_stack
 {
 	int		*numbers;
@@ -33,20 +38,7 @@ typedef struct s_ops
 	char	*strategy;
 	int		isbench;
 }			t_ops;
-
-# include "ft_printf.h"
-# include "operations.h"
-# include "strategies.h"
-# include "utils.h"
-
 int			push_swap(int *input, int size, int flag);
-
-int			parse_flags(char **argv);
-int			parse_offset(int flag);
-int			validate_array(int *input, int size);
-int			*validate_values(int argc, char **argv, int size);
-
-int			rank_array(int *input, int size);
 
 t_stack		*init_stack(int n);
 int			fill_stack(t_stack *stack, int *input, int n);

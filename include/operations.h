@@ -27,6 +27,9 @@
 # define OP_RRB 9
 # define OP_RRR 10
 
+typedef struct s_stack	t_stack;
+typedef struct s_ops	t_ops;
+
 t_ops	*init_ops(int flag, int isbench);
 void	do_op(t_ops *ops, int op, char *name);
 
@@ -41,4 +44,5 @@ void	rr(t_stack *a, t_stack *b, t_ops *ops);
 void	rra(t_stack *a, t_ops *ops);
 void	rrb(t_stack *b, t_ops *ops);
 void	rrr(t_stack *a, t_stack *b, t_ops *ops);
+
 #endif
