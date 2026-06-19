@@ -5,7 +5,7 @@ NAME 		= push_swap
 CC 		= gcc
 CFLAGS 		= -g -Wall -Wextra -Werror
 
-PRINTFDIR 	= ./ft_printf
+PRINTFDIR 	= ./libft/ft_printf
 PRINTFNAME 	= libftprintf.a
 PRINTF		= $(PRINTFDIR)/$(PRINTFNAME)
 PRINTFLFLAGS	= -L$(PRINTFDIR) -l$(patsubst lib%, %, $(PRINTFNAME:.a=))
