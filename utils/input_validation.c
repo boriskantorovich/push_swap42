@@ -1,56 +1,101 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_validation.c                                 :+:      :+:    :+:   */
+/*   input_helpers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/19 13:09:34 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/19 13:09:36 by bkantoro         ###   ########.fr       */
+/*   Created: 2026/06/19 13:08:53 by bkantoro          #+#    #+#             */
+/*   Updated: 2026/06/19 13:08:55 by bkantoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	validate_sorted(int *input, int size)
+static int	ft_isdigit(int c)
 {
-	int	i;
-
-	i = 0;
-	while (i < size - 1)
-	{
-		if (input[i] > input[i + 1])
-			return (1);
-		i++;
-	}
-	return (0);
+	return ((c >= '0' && c <= '9'));
 }
 
-static int	validate_repeat(int *input, int size)
+static int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	j;
+	int	nb;
+	int	sgn;
 
-	i = 0;
-	while (i < size - 1)
+	nb = 0;
+	sgn = 1;
+	if (*nptr == '-')
 	{
-		j = i + 1;
-		while (j < size)
+		sgn = -1;
+		nptr++;
+	}
+	while (ft_isdigit((int)(*nptr)))
+	{
+		nb = nb * 10 + (*nptr - '0');
+		nptr++;
+	}
+	return (sgn * nb);
+}
+
+static int	validate_int(const char *nptr)
+{
+	if (!*nptr)
+		return (0);
+	if (*nptr == '-' && ft_isdigit(*(nptr + 1)))
+		nptr++;
+	while (*nptr)
+	{
+		if (!ft_isdigit(*nptr))
+			return (0);
+		nptr++;
+	}
+	return (1);
+}
+
+static int	validate_value(const char *nptr)
+{
+	unsigned long long	nb;
+	int					sgn;
+
+	nb = 0;
+	sgn = 1;
+	if (*nptr == '-')
+	{
+		sgn = -1;
+		nptr++;
+	}
+	while (ft_isdigit((int)(*nptr)))
+	{
+		nb = nb * 10 + (*nptr - '0');
+		if (sgn == 1 && nb > INT_MAX)
+			return (0);
+		else if (sgn == -1 && nb > (unsigned long long)INT_MAX + 1)
+			return (0);
+		nptr++;
+	}
+	return (1);
+}
+
+int	*validate_values(int argc, char **argv, int size)
+{
+	int	jndex;
+	int	index;
+	int	*input;
+
+	index = argc - size;
+	jndex = 0;
+	input = (int *)malloc(sizeof(int) * size);
+	if (!input)
+		return (NULL);
+	while (index < argc)
+	{
+		if (validate_int(argv[index]) && validate_value(argv[index]))
+			input[jndex++] = ft_atoi(argv[index++]);
+		else
 		{
-			if (input[i] == input[j])
-				return (1);
-			j++;
+			free(input);
+			return (NULL);
 		}
-		i++;
 	}
-	return (0);
-}
-
-int	validate_array(int *input, int size)
-{
-	if (validate_repeat(input, size) == 1)
-		return (2);
-	if (validate_sorted(input, size) == 1)
-		return (1);
-	return (0);
+	return (input);
 }

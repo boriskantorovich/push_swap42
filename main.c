@@ -24,12 +24,12 @@ int	main(int argc, char **argv)
 	input = validate_values(argc, argv, size);
 	if (!input)
 		return (print_error());
-	if (validate_array(input, size) == 2)
+	if (validate_stack(input, size) == 2)
 	{
 		free(input);
 		return (print_error());
 	}
-	if (validate_array(input, size) == 0)
+	if (validate_stack(input, size) == 0)
 	{
 		free(input);
 		return (0);

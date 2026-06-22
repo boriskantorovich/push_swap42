@@ -1,37 +1,34 @@
-.PHONY: 	all clean fclean re debug norm format FORCE
+NAME 			= push_swap
+CC 				= gcc
+CFLAGS 			= -g -Wall -Wextra -Werror
 
-NAME 		= push_swap
-
-CC 		= gcc
-CFLAGS 		= -g -Wall -Wextra -Werror
-
-PRINTFDIR 	= ./libft/ft_printf
-PRINTFNAME 	= libftprintf.a
-PRINTF		= $(PRINTFDIR)/$(PRINTFNAME)
+PRINTFDIR 		= ./libft/ft_printf
+PRINTFNAME 		= libftprintf.a
+PRINTF			= $(PRINTFDIR)/$(PRINTFNAME)
 PRINTFLFLAGS	= -L$(PRINTFDIR) -l$(patsubst lib%, %, $(PRINTFNAME:.a=))
 
-INCLUDES 	= -Iinclude -I$(PRINTFDIR)
+INCLUDES 		= -Iinclude -I$(PRINTFDIR)
 
-SRCS 		= $(wildcard operations/*.c strategies/*.c utils/*.c input/*.c *.c)
+SRCS 			= $(wildcard operations/*.c strategies/*.c utils/*.c input/*.c *.c)
 
-OBJS 		= $(SRCS:.c=.o)
+OBJS 			= $(SRCS:.c=.o)
 	
-all: 		$(NAME)
+all: $(NAME)
 
-$(NAME): 	$(OBJS) $(PRINTF)
+$(NAME): $(OBJS) $(PRINTF)
 	@$(CC) $(CFLAGS) $(OBJS) $ $(PRINTFLFLAGS) -o $(NAME) -lm
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(PRINTF): FORCE
+$(PRINTF): 
 	@$(MAKE) -C $(PRINTFDIR)
 
 clean:
 	@rm -rf $(OBJS)
 	@$(MAKE) clean -C $(PRINTFDIR)
 
-fclean: clean
+fclean: clean 
 	@rm -rf $(NAME) 
 	@$(MAKE) fclean -C $(PRINTFDIR)
 
@@ -46,4 +43,5 @@ norm:
 format:
 	@c_formatter_42 $(shell find . -name '*.c') include/*.h
 
-FORCE:
+# FORCE:
+.PHONY: 	all clean fclean re debug norm format FORCE

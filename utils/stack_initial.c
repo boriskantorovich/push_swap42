@@ -51,11 +51,14 @@ int	fill_stack(t_stack *stack, int *input, int size)
 	return (0);
 }
 
-int	clear_stack(t_stack *stack)
+int	clear_all(t_stack *a, t_stack *b, t_ops *ops)
 {
-	if (!stack)
+	if (!a || !b || !ops)
 		return (-1);
-	free(stack->numbers);
-	free(stack);
+	free(a->numbers);
+	free(b->numbers);
+	free(a);
+	free(b);
+	free(ops);
 	return (0);
 }

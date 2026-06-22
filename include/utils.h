@@ -16,7 +16,7 @@
 
 void	bench(t_ops *o, double disorder, int isbench);
 int		rank_array(int *input, int size);
-int		validate_array(int *input, int size);
+int		validate_stack(int *input, int size);
 int		*validate_values(int argc, char **argv, int size);
 int		parse_offset(int flag);
 int		parse_flags(char **argv);

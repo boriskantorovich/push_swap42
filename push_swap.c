@@ -41,8 +41,6 @@ int	push_swap(int *input, int size, int flag)
 	disorder = compute_disorder(a);
 	dispatch(a, b, ops, flag);
 	bench(ops, disorder, isbench);
-	clear_stack(a);
-	clear_stack(b);
-	free(ops);
+	clear_all(a, b, ops);
 	return (0);
 }
