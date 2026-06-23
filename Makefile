@@ -44,7 +44,7 @@ format:
 	@c_formatter_42 $(shell find . -name '*.c') include/*.h
 
 checker:
-	wget https://cdn.intra.42.fr/document/document/49766/checker_linux -O checker_linux
+	rm -rf checker* && wget https://cdn.intra.42.fr/document/document/49766/checker_linux -O checker_linux && chmod +x checker_linux
 
 # FORCE:
 .PHONY: 	all clean fclean re debug norm format FORCE
