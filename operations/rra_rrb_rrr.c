@@ -6,27 +6,27 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 12:31:37 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/19 12:31:39 by bkantoro         ###   ########.fr       */
+/*   Updated: 2026/06/23 11:40:23 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	revrotate(t_stack *st)
+static void	revrotate(t_stack *stack)
 {
 	int	tmp;
 	int	i;
 
-	if (!st || st->count <= 1)
+	if (!stack || stack->count <= 1)
 		return ;
-	tmp = st->numbers[st->count - 1];
-	i = st->count - 1;
+	tmp = stack->numbers[stack->count - 1];
+	i = stack->count - 1;
 	while (i > 0)
 	{
-		st->numbers[i] = st->numbers[i - 1];
+		stack->numbers[i] = stack->numbers[i - 1];
 		i--;
 	}
-	st->numbers[0] = tmp;
+	stack->numbers[0] = tmp;
 }
 
 void	rra(t_stack *a, t_ops *ops)

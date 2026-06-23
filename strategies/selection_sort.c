@@ -6,23 +6,23 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 11:34:00 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/16 20:24:24 by milnicki         ###   ########.fr       */
+/*   Updated: 2026/06/23 11:42:08 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "operations.h"
 #include "push_swap.h"
 
-static int	find_pos(t_stack *st, int value)
+static int	find_pos(t_stack *stack, int value)
 {
 	int	i;
 
-	if (!st)
+	if (!stack)
 		return (-1);
 	i = 0;
-	while (i < st->count)
+	while (i < stack->count)
 	{
-		if (st->numbers[i] == value)
+		if (stack->numbers[i] == value)
 			return (i);
 		i++;
 	}

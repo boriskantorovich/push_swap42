@@ -6,17 +6,17 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 12:32:00 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/19 12:32:02 by bkantoro         ###   ########.fr       */
+/*   Updated: 2026/06/23 11:40:52 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_first_pair(t_stack *st)
+void	swap_first_pair(t_stack *stack)
 {
-	if (!st || st->count <= 1)
+	if (!stack || stack->count <= 1)
 		return ;
-	ft_swap(&st->numbers[0], &st->numbers[1]);
+	ft_swap(&stack->numbers[0], &stack->numbers[1]);
 }
 
 void	sa(t_stack *a, t_ops *ops)

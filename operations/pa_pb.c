@@ -6,26 +6,26 @@
 /*   By: bkantoro <bkantoro@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 12:31:25 by bkantoro          #+#    #+#             */
-/*   Updated: 2026/06/19 12:31:27 by bkantoro         ###   ########.fr       */
+/*   Updated: 2026/06/23 11:42:45 by milnicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	grow_down(t_stack *st, int new)
+static void	grow_down(t_stack *stack, int new)
 {
 	int	i;
 
-	if (!st || st->count == st->size)
+	if (!stack || stack->count == stack->size)
 		return ;
-	st->count++;
-	i = st->count - 1;
+	stack->count++;
+	i = stack->count - 1;
 	while (i > 0)
 	{
-		st->numbers[i] = st->numbers[i - 1];
+		stack->numbers[i] = stack->numbers[i - 1];
 		i--;
 	}
-	st->numbers[0] = new;
+	stack->numbers[0] = new;
 }
 
 static void	shrink_up(t_stack *stack)
