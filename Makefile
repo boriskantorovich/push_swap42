@@ -21,7 +21,7 @@ $(NAME): $(OBJS) $(PRINTF)
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(PRINTF): 
+$(PRINTF): FORCE 
 	@$(MAKE) -C $(PRINTFDIR)
 
 clean:
@@ -48,5 +48,6 @@ format:
 checker:
 	rm -rf checker* && wget https://cdn.intra.42.fr/document/document/49766/checker_linux -O checker_linux && chmod +x checker_linux
 
-# FORCE:
+FORCE:
+
 .PHONY: 	all clean fclean re debug norm format FORCE
