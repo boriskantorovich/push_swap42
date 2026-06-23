@@ -43,6 +43,8 @@ norm:
 format:
 	@c_formatter_42 $(shell find . -name '*.c') include/*.h
 
+
+#  shuf -i 0-9999 -n 500 > args.txt ; ./push_swap $(cat args.txt)
 checker:
 	rm -rf checker* && wget https://cdn.intra.42.fr/document/document/49766/checker_linux -O checker_linux && chmod +x checker_linux
 
